@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./head') %>
+
+<body>
+    <div class="header">
+        <div id="header-navigation">
+            <div class="container" style="position: relative;">
+                <div class="upperNav">
+                    <a href="#" class="itemNav">HOME</a>
+                    <a href="" class="itemNav">ABOUT</a>
+                    <a href="" class="itemNav">OUR SERVICES</a>
+                    <a href="" class="itemNav">PORTFOLIO</a>
+                    <a href="" class="itemNav">EXPERIENCE</a>
+                    <a href="" class="itemNav">BLOG</a>
+                    <a href="" class="itemNav">CONTACT</a>
+                    <a href="http://localhost:3000/create-portfolio" class="itemNav">Log / Reg</a>
+                </div>
+                <div class="header-up-text">
+                    <p class="header_firstline_text"> <%= one %> </p>
+                    <span class="header_twosline_text"> <%= two %> </span>
+                    <p class="header_thierdline_text"> <%= three %> </p>
+                    <p class="header_lastline_text"> <%= four %> </p>
+                    <a class='button download' href="#"> DOWNLOAD CV </a>    
+                    <div class="container_for_form"><a class="button form_create" href="http://localhost:3000/create-portfolio">Create Portpholio</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="headerbg">
+            <div id="mask-bg"></div>
+        </div>
+    </div>
+
+<%- include('./footer') %>
+</body>
+</html>
