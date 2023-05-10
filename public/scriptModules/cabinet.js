@@ -40,21 +40,29 @@ editBtn.addEventListener('click', () => {
   //check parentContainer
   editableElements.forEach((el, index) => {
     el.setAttribute('contenteditable', 'true');
+
     el.onclick = function(event) {
       if (!event.target.contenteditable) return false;
       relateValue[index] = event.target.innerHTML;
       editValue(event.target, index);
     }
+
     el.classList.add('editing');
   });
   
   window.addEventListener('scroll', () => {
     editableElements.forEach((el, index) => {
-      const compSize = getComputedStyle(el);
+
       const posL = el.getBoundingClientRect().right + 10;
       const posT = el.getBoundingClientRect().top + el.clientHeight / 2 + window.pageYOffset;
+      
+      // if (el.getBoundingClientRect().right == 0 && el.getBoundingClientRect().top == 0) {
+      //   return editInputs[index].style.display = 'none';
+      // }
+      
       editInputs[index].style.left = posL + 'px';
       editInputs[index].style.top = posT + 'px';
+      
     });
   });
   
