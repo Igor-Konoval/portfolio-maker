@@ -15,8 +15,8 @@ function editValue(targ, index) {
     })
 }
 
-let allElemEdit = document.querySelectorAll('[contenteditable]');
-allElemEdit = Array.from(allElemEdit).filter(el => el.offsetParent !== null);
+let allElemEdit = document.querySelectorAll('[contenteditable]');//52 true
+allElemEdit = Array.from(allElemEdit).filter(el => el.offsetParent !== null);//trouble
 allElemEdit.forEach((el, index) => {
   let posL = el.pageXOffset + el.getBoundingClientRect().right + 10;
   let posT = el.pageYOffset + el.getBoundingClientRect().top + el.clientHeight / 2;
@@ -37,7 +37,7 @@ allElemEdit.forEach((el, index) => {
 editBtn.addEventListener('click', () => {
   const editableElements = document.querySelectorAll('[contenteditable]');
   const editInputs = document.querySelectorAll('.f_size');
-  
+  //check parentContainer
   editableElements.forEach((el, index) => {
     el.setAttribute('contenteditable', 'true');
     el.onclick = function(event) {

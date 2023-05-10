@@ -20,7 +20,8 @@ allButShowHide.forEach((el, index) => {
     let target = event.target;    
     let parent = target.parentElement;
     let elAttr = Boolean(target.getAttribute('show_block'));
-    target.setAttribute('show_block', !elAttr);
+    // target.setAttribute('show_block', !elAttr);//true
+    target.setAttribute('show_block', true);//true
     hideParent(parent, index);
   }); 
 });
