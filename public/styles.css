@@ -87,7 +87,7 @@ body {
 
 #inp_submit_cabinet {
     background-color: #f8c819d0;
-    z-index: 5100;
+    z-index: 5900;
     position: fixed;
     bottom: 130px;
     left: 100px;
@@ -229,7 +229,7 @@ body {
 #button_redact {
     position: fixed;
     /* margin-top: 70px; */
-    z-index: 5010;
+    z-index: 5900;
     right: 15%;
     bottom: 12%;
 }
@@ -237,6 +237,7 @@ body {
 .edit-btn, .save-btn {
     width: 100px;
     height: 50px;
+    z-index: 6000;
 }
 
 .container_info_error {
