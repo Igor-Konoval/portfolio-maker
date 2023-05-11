@@ -15,7 +15,7 @@ function editValue(targ, index) {
     })
 }
 
-let allElemEdit = document.querySelectorAll('[contenteditable]');//52 true
+let allElemEdit = document.querySelectorAll('[contenteditable]');
 allElemEdit = Array.from(allElemEdit).filter(el => el.offsetParent !== null);//trouble
 
 allElemEdit.forEach((el, index) => {
@@ -60,10 +60,11 @@ editBtn.addEventListener('click', () => {
       
       if (editInputs[index].style.display === 'none') {
         return;
-      } else {
-        editInputs[index].style.left = posL + 'px';
-        editInputs[index].style.top = posT + 'px';  
       }
+      
+      editInputs[index].style.left = posL + 'px';
+      editInputs[index].style.top = posT + 'px';  
+      
     });
   });
   
@@ -74,7 +75,7 @@ editBtn.addEventListener('click', () => {
     editInputs[index].style.left = posL + 'px';
     editInputs[index].style.top = posT + 'px';
 
-    if (el.closest('[block1="true"], [block2="true"], [block3="true"], [block4="true"], [block5="true"], [block6="true"]')) {
+    if (el.closest('[block0="true"], [block1="true"], [block2="true"], [block3="true"], [block4="true"], [block5="true"]')) {
       editInputs[index].style.display = 'none';
     } else {
       editInputs[index].style.display = 'block';
