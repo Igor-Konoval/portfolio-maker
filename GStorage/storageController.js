@@ -1,5 +1,6 @@
 const storageModel = require('./storageModel.js');
 const User = require('../Models/User.js');
+const ImgCabinet = retuire('../Models/ImgCabinet.js');
 
 class storageController {
     async getFilesMethod(req, res) {
@@ -7,6 +8,7 @@ class storageController {
           let { username } = req.params;
           let user = await User.findOne({ username });
           let id = user._id;
+          let userImages = await ImgCabinet.findById(id);
           
 
           const [files] = await storageModel.bucket.getFiles();
