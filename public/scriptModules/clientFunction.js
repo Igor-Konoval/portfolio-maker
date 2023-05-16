@@ -1,5 +1,6 @@
-const uuidv4 = require('./uuidv4.js');
-const username = window.location.pathname.split('/')[2];
+const jwt = require('jsonwebtoken');
+const uuidv4 = require('../../GStorage/uuidv4.js');
+const username = 
 
 document.querySelectorAll('[name="imgfile"]').forEach((item, index)=>{
     item.addEventListener("click", (event) => {

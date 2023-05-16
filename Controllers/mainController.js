@@ -10,7 +10,7 @@ const server = express();
 server.use(cookieParser());
 
 server.use(bodyParser.urlencoded({ extended: false }));
-
+let usernameExport = '';
 
 class homeController {
     home(req, res) { 
@@ -70,7 +70,7 @@ class homeController {
         }
     }
 
-    async userCabinet(req, res) {
+    async userCabinet(req, res) {  //search userCabinet
         let { username } = req.params;
         try {
             let user = await User.findOne({ username });
@@ -107,7 +107,7 @@ class homeController {
             username = "non user";
             if (token) {
                 let decodedToken = jwt.verify(token, secret);
-                username = decodedToken.username;
+                usernameExport = username = decodedToken.username;
             }
             console.log(checkDb);
             if (checkDb) {
@@ -129,7 +129,7 @@ class homeController {
                 let editCabArr = [];
                 let editBlocksArr = [];
                 let decodedToken = jwt.verify(token, secret);
-                username = decodedToken.username;
+                usernameExport = username = decodedToken.username;
                 const id = decodedToken.id;
                 let checkDb = true;
 
@@ -224,4 +224,7 @@ class homeController {
     
 }
 
-module.exports = new homeController();
+module.exports = {
+    homeController: new homeController(),
+    usernameExport,
+};

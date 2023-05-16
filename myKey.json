@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "direct-mason-384614",
+  "private_key_id": "82331e6c03bb9090f40f744b95d7b66bff48f63b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCx9nfjgePKJQ3e\nJt4LgrXzbwCWyOZmLuRFswbp1B3NifnwpnJsGzgCX78H8YeWKhpj1rIDIg7M1M46\n0I3n3qJGuiCbTUqj8jQaqPozKVHKu+vB1vUTfVSyl/SeyALMYZrzW5hAOoQA1fGO\ngy1CR0pEolF+fzbGXPLkhbGLCKheJbhcRlGpTHjDxW8D7RMgyu6edaTX5TkgRg12\nSyK5DCEorQR1Ga7pk2bDD+ba0/IQkwakCj9d1roWvMmofBBdgKFoYedOOzSknu2k\nDWbMzbhY1lm3CU/kO8yvnq8RgpzukJAbfc9pMkLhXhlFVSTkyE6z2LZIBJVP8s8K\n7MT8Ms1tAgMBAAECggEAFVeVBiQ4ILBz6s3neCLrVi/cNrkOJHgAKTmwnQ8yqckf\nv9P+SeezvlkkLDwzgfc3pfyD6atGchsdRmFne0SwWmIM8gMBbgroY8AbDVKpu/Hw\ncpUoW/d+VlKx4+7howgbkI7OAfnihcUijHA/18B78CI1OsHf3EceW/iKk71sj6ms\nE8IWIDYfd1vqH2+VTpHW2RhlAg26PCtcAWYlowvrpoXESxgcAzmNFWmHpV8wbywF\ngUE+p22usLSVLGWLEOo7QLhN3QmzMzTdGjlNIZplVR7so72pHLsfj7FlhPdEJQSA\nAWWly1cRzA7axe1wcA2msCOX3oWHAOhpaVTCnvAlYwKBgQDkbVeAD8JTJTDcyhFW\nxhjlFJggqaiMQ5jHQE5iz1RyzJlMhLkq/J+mXJ1RSNtjY8QAUjjlVuOGFcezgvP5\nsjp/fSFQ6brCDbOWwB8goeRL4Ud7c7tRaBW5hzGFHmFWQyYMbTD8bbDQi+riBD1I\nUCJh+SylP3r10CandWwd4hhTQwKBgQDHcbh536BnduUr22BceTXwwNr0wFTNPfM/\n5lf7mE1DBTXHUUgyYwo/sWRlsUctIFOvU7LmV4W1Va9Fs9TxicvmglX8DhoyOu8K\n5ZyBtmJqJ2PQ1nzrPQhgOreNL1itcQJ6f7eSowMHsFI1pihIR8Z00nDI/xyBgKF9\nuqliug5ZjwKBgQC1BI1Ft7dYKm3JWfxZloyd5S8VGz2tQdgtdiFoHkMe4lJNmBQh\nI6bksBofEyyAW8w0MPRTkgKl/FaQRCNRadL/usqPE1njc/Ywbbl9I64GD9WU2EbG\nIUSuDJvKkSOzt2zMhi8+qzJmYarWR2PFDXPhzhN6NI8dg0FOjTgLimOafwKBgBy4\nDmVWQ0XCxBs9mrGWLqM9UgoeS9fGDOntpEuxUabN8EGEPc4rnsUvKRLPpT0lQ4ei\nmMc8YR+MeBGkZIxnWDoYGIOUEEedXuCF0bSH68H3bBMdX52MC1G4AshMwgsvk7jJ\n/UgbOwt3Y08gXvqRg009JEp9GcC4Igj1wQBbZEeXAoGAaC9SNvE4qc1RbJl9g3CS\nSL7AVrTXN4rRB/Iq4XAP8u5K6cwYPKUJco5/7TZNdZEldK0xRRIzuJiCxlRrmJdf\nXTbTSNRLtD9W8gQdu2sNagn/krBgh7n5rMLF8fed9gMFOG/6AV7Ghcqe23lNwdO5\nef7UhoRWrH4E1eDjV/h5ao0=\n-----END PRIVATE KEY-----\n",
+  "client_email": "adminstorage@direct-mason-384614.iam.gserviceaccount.com",
+  "client_id": "109752250255825498572",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/adminstorage%40direct-mason-384614.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
