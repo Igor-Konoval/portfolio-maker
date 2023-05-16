@@ -9,9 +9,12 @@ class storageController {
           let user = await User.findOne({ username });
           let id = user._id;
           let userImages = await ImgCabinet.findById(id);
+          const collImgs = userImages.value;
           
+          const [files] = await storageModel.bucket.getFiles({
+            prefix: `${userName}/`,
+          });
 
-          const [files] = await storageModel.bucket.getFiles();
           res.send([files]);
           console.log("Success");
         } catch (error) {
