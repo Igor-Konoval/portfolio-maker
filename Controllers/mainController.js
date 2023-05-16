@@ -41,12 +41,13 @@ class homeController {
                     let decodedToken = jwt.verify(token, secret);
                     id = decodedToken.id;
                     username = decodedToken.username;
+                    global.usernameExport = decodedToken.username;
                 }
             }
 
             let editCabArr = [];
             let editBlocksArr = [];
-
+console.log('constructorCabinet');
             let editCab = await EditCabinet.findById(id);
             
             if (editCab) {
@@ -60,8 +61,6 @@ class homeController {
                 let allBlocks = await editBlocks.value;
                 editBlocksArr.push(...allBlocks);
             }
-
-            console.log(editCabArr,'/n', editBlocksArr);
             
             return res.json({ dataOne: editCabArr, dataTwo: editBlocksArr});
         } catch (e) {
@@ -101,15 +100,16 @@ class homeController {
             } else {
                 checkDb = false;
             }
-            
+            // console.log('usernameExport userCabinet');
             let token = req.cookies.jwt;
             username = "non user";
             if (token) {
                 let decodedToken = jwt.verify(token, secret);
                 username = decodedToken.username;
-                global.usernameExport = decodedToken.username;
+                // global.usernameExport = decodedToken.username;
+                // console.log(usernameExport + ' 1 Export');
             }
-            console.log(checkDb);
+
             if (checkDb) {
                 return res.render('clientCabinet', {title: 'your cabinet', username, dataOne: editCabArr, dataTwo: editBlocksArr});
             } else {
@@ -130,7 +130,7 @@ class homeController {
                 let editBlocksArr = [];
                 let decodedToken = jwt.verify(token, secret);
                 username = decodedToken.username;
-                global.usernameExport = decodedToken.username;
+                // global.usernameExport = decodedToken.username;
                 const id = decodedToken.id;
                 let checkDb = true;
 

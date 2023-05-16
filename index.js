@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const authRouter = require('./Routers/authRouter.js');
 const mainRouter = require('./Routers/mainRouter.js');
+const storageRouter = require('./GStorage/storageRouter.js');
 const cookieParser = require('cookie-parser');
 const PORT = 3000;
 
@@ -21,6 +22,7 @@ server.use(express.static('public'))
 server.use('/GStorage', express.static('F:/maket/GStorage'));
 server.use('/auth', authRouter);
 server.use('/', mainRouter);
+server.use('/', storageRouter);
 
 
 ( async ()=> {

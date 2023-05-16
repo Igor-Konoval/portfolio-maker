@@ -1,6 +1,6 @@
 const storageModel = require('./storageModel.js');
 const User = require('../Models/User.js');
-const ImgCabinet = retuire('../Models/ImgCabinet.js');
+const ImgCabinet = require('../Models/ImgCabinet.js');
 
 class storageController {
     async getFilesMethod(req, res) {
