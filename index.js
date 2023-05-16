@@ -18,6 +18,7 @@ server.use(cookieParser());
 express.static.mime.types[".js"] = "text/javascript";
 server.use(bodyParser.urlencoded({extended: true}));
 server.use(express.static('public'))
+server.use('/GStorage', express.static('F:/maket/GStorage'));
 server.use('/auth', authRouter);
 server.use('/', mainRouter);
 

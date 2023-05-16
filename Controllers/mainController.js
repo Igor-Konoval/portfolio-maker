@@ -10,7 +10,6 @@ const server = express();
 server.use(cookieParser());
 
 server.use(bodyParser.urlencoded({ extended: false }));
-let usernameExport = '';
 
 class homeController {
     home(req, res) { 
@@ -107,7 +106,8 @@ class homeController {
             username = "non user";
             if (token) {
                 let decodedToken = jwt.verify(token, secret);
-                usernameExport = username = decodedToken.username;
+                username = decodedToken.username;
+                global.usernameExport = decodedToken.username;
             }
             console.log(checkDb);
             if (checkDb) {
@@ -129,7 +129,8 @@ class homeController {
                 let editCabArr = [];
                 let editBlocksArr = [];
                 let decodedToken = jwt.verify(token, secret);
-                usernameExport = username = decodedToken.username;
+                username = decodedToken.username;
+                global.usernameExport = decodedToken.username;
                 const id = decodedToken.id;
                 let checkDb = true;
 
@@ -224,7 +225,4 @@ class homeController {
     
 }
 
-module.exports = {
-    homeController: new homeController(),
-    usernameExport,
-};
+module.exports = new homeController();
