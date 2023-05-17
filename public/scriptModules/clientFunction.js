@@ -52,6 +52,17 @@ function uuidv4() {
   );
 }
 
+// function createImg(imgFile) {
+//   let imgUpload = document.createElement('img');
+//   imgUpload.setAttribute('src', imgFile.name);
+// }
+
+function replaceInpImg(curentInp, imgFileName) {
+  const imgTarget = curentInp.parentElement.previousElementSibling;
+  console.log(imgTarget);
+  console.log(`https://storage.googleapis.com/img_bucket_trial/${imgFileName.name}`);
+  imgTarget.setAttribute('src', `https://storage.googleapis.com/img_bucket_trial/${imgFileName.name}`)
+}
 
 document.addEventListener("DOMContentLoaded", function() {
   document.querySelectorAll('input[name="imgfile"]').forEach((item, index) => {
@@ -62,7 +73,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
       let blob = file.slice(0, file.size, "image/jpeg");
       let newFile = new File([blob], `${usernameExport}_${index}_${postid}_post.jpeg`, { type: "image/jpeg" });
-      
+      replaceInpImg(item, newFile);
+
       let formData = new FormData();
       formData.append("imgfile", newFile);
       fetch("/upload", {
