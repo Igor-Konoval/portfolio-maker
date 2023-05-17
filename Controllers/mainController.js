@@ -47,11 +47,11 @@ class homeController {
 
             let editCabArr = [];
             let editBlocksArr = [];
-console.log('constructorCabinet');
+
             let editCab = await EditCabinet.findById(id);
             
             if (editCab) {
-                let editEl = await editCab.value;
+                let editEl = editCab.value; //deleted await
                 editCabArr.push(...editEl);
             }
 
@@ -85,7 +85,7 @@ console.log('constructorCabinet');
             let checkDb = true;
             
             if (editCab) {
-                let editEl = await editCab.value;
+                let editEl = editCab.value; //deleted await
                 editCabArr.push(...editEl);
             } else {
                 checkDb = false;

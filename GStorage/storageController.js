@@ -1,6 +1,8 @@
+const jwt = require('jsonwebtoken');
 const storageModel = require('./storageModel.js');
 const User = require('../Models/User.js');
 const ImgCabinet = require('../Models/ImgCabinet.js');
+const { secret } = require('../config.js');
 
 class storageController {
     async getFilesMethod(req, res) {
@@ -23,22 +25,90 @@ class storageController {
     }
 
     async postFilesMethod(req, res) {
-        console.log("Made it /upload");
-        try {
-          if (req.file) {
-            console.log("File found, trying to upload...");
-            const blob = storageModel.bucket.file(req.file.originalname);
-            const blobStream = blob.createWriteStream();
-      
-            blobStream.on("finish", () => {
-              res.status(200).send("Success");
-              console.log("Success");
-            });
-            blobStream.end(req.file.buffer);
-          } else throw "error with img";
-        } catch (error) {
-          res.status(500).send(error);
-        }
+      console.log("Made it /upload");
+      try {
+        if (req.file) {
+          console.log("File found, trying to upload...");
+          const blob = storageModel.bucket.file(req.file.originalname);
+          const blobStream = blob.createWriteStream();
+          // let nameAndIndexImg = req.file.originalname.split('_');
+          // console.log("name and index "+ nameAndIndexImg[0] + ' ' + nameAndIndexImg[1]);
+          // const token = req.cookies.jwt;
+          // let id = '';
+          // let imgBd = '';
+          // if (token) {
+          //   let decodedToken = jwt.verify(token, secret);
+          //   id = decodedToken.id;
+          //   imgBd = await ImgCabinet.findById(id);
+            
+          //   if (!imgBd) {
+          //     imgBd = new ImgCabinet({
+          //     _id: id,
+          //     value: [req.file.originalname]
+          //     });
+
+          //     await imgBd.save();
+            
+          //   } else {
+          //       const allImgsUser = await imgBd.findOneAndUpdate(
+          //         { _id: id, value: { $elemMatch: { $regex: `^${nameAndIndexImg[0]}_${nameAndIndexImg[1]}_` } } },
+          //         { $set: { "value.$": req.file.originalname } },
+          //         { new: true }
+          //       )}
+          //   // await editCab.save();
+          // }
+
+          const nameAndIndexImg = req.file.originalname.split('_');
+          console.log("name and index " + nameAndIndexImg[0] + ' ' + nameAndIndexImg[1]);
+          
+          const token = req.cookies.jwt;
+          console.log(token + ' token');
+          let id = '';
+          let imgBd = '';
+          
+          if (token) {
+            const decodedToken = jwt.verify(token, secret);
+            id = decodedToken.id;
+            imgBd = await ImgCabinet.findById(id);
+            
+            if (!imgBd) {
+              imgBd = new ImgCabinet({
+                _id: id,
+                value: [req.file.originalname] // Создайте массив значений, так как вы храните массив в поле "value"
+              });
+          
+              await imgBd.save();
+            } else {
+              const existingFile = imgBd.value.find(value => value.startsWith(`${nameAndIndexImg[0]}_${nameAndIndexImg[1]}_`));
+          
+              if (existingFile) {
+                // Если файл с указанным именем и индексом уже существует, обновляем его
+                const updatedValue = imgBd.value.map(value => {
+                  if (value === existingFile) {
+                    return req.file.originalname;
+                  }
+                  return value;
+                });
+          
+                imgBd.value = updatedValue;
+                await imgBd.save();
+              } else {
+                // Если файла нет в коллекции, добавляем его
+                imgBd.value.push(req.file.originalname);
+                await imgBd.save();
+              }
+            }
+          }
+          blobStream.on("finish", () => {
+            res.status(200).send("Success");
+            console.log("Success");
+          });
+          blobStream.end(req.file.buffer);
+        } else throw new Error("error with img");
+      } catch (error) {
+        res.status(500).json({ error: error.message })
+        console.log(error);
+      }
     }
 }
 
