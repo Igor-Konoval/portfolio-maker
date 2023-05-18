@@ -31,7 +31,6 @@ class homeController {
             let { username } = req.params;
             let user;
             let id;
-            console.log(username);
             if (username !== 'undefined') {
                 user = await User.findOne({ username });
                 id = user._id;
@@ -85,14 +84,15 @@ class homeController {
             let checkDb = true;
             
             if (editCab) {
-                let editEl = editCab.value; //deleted await
+                let editEl = editCab.value; 
                 editCabArr.push(...editEl);
             } else {
                 checkDb = false;
             }
 
             let editBlocks = await BlocksCabinet.findById(id);
-            
+            let usernameExport = username;
+            console.log(usernameExport);
             if (editBlocks) {
                 let allBlocks = await editBlocks.value;
                 editBlocksArr.push(...allBlocks);
@@ -100,18 +100,16 @@ class homeController {
             } else {
                 checkDb = false;
             }
-            // console.log('usernameExport userCabinet');
+            console.log('usernameExport userCabinet');
             let token = req.cookies.jwt;
             username = "non user";
             if (token) {
                 let decodedToken = jwt.verify(token, secret);
                 username = decodedToken.username;
-                // global.usernameExport = decodedToken.username;
-                // console.log(usernameExport + ' 1 Export');
             }
 
             if (checkDb) {
-                return res.render('clientCabinet', {title: 'your cabinet', username, dataOne: editCabArr, dataTwo: editBlocksArr});
+                return res.render('clientCabinet', {title: 'your cabinet', username, usernameExport, dataOne: editCabArr, dataTwo: editBlocksArr});
             } else {
                 return res.render('clientCabinet', {title: 'cabinet', username});
             }
@@ -130,7 +128,6 @@ class homeController {
                 let editBlocksArr = [];
                 let decodedToken = jwt.verify(token, secret);
                 username = decodedToken.username;
-                // global.usernameExport = decodedToken.username;
                 const id = decodedToken.id;
                 let checkDb = true;
 

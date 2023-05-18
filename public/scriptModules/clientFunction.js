@@ -1,50 +1,3 @@
-// // const jwt = require('jsonwebtoken');
-// const uuidv4 = require('../../GStorage/uuidv4.js');
-// // const controller = require('../../Controllers/mainController.js');
-// let username = usernameExport; 
-
-// const { error } = require("console");
-
-// document.querySelectorAll('[name="imgfile"]').forEach((item, index)=>{
-//     item.addEventListener("input", (event) => {
-//     let postid = uuidv4();
-//     // let inputElem = document.getElementById("imgfile"); //this.target //this.input
-//     let inputElem = event.target;
-//     let file = inputElem.files[0];
-    
-//     let blob = file.slice(0, file.size, "image/jpeg");
-//     newFile = new File([blob], `${username}_${index}_${postid}_post.jpeg`, { type: "image/jpeg" });
-    
-//     let formData = new FormData();
-//     formData.append("imgfile", newFile);
-//     fetch("/upload", {
-//       method: "POST",
-//       body: formData,
-//     })
-//       .then((res) => res.text());
-//     //   .then(loadPosts());
-//   });
-// })
-
-// function loadPosts() {
-//     fetch("/upload")
-//         .then((res) => res.json())
-//         .then((x) => {
-//             for (y = 0; y < x[0].length; y++) {
-//                 console.log(x[0][y]);
-//                 const newimg = document.createElement("img");
-//                 newimg.setAttribute(
-//                 "src",
-//                 "https://storage.googleapis.com/img_bucket_trial/" + x[0][y].id);
-//                 newimg.setAttribute("width", 50);
-//                 newimg.setAttribute("height", 50);
-//                 document.getElementById("images").appendChild(newimg);
-//             }
-//         });
-// }
-
-// const uuidv4 = require('../../GStorage/uuidv4.js');
-// import uuidv4 from "../../GStorage/uuidv4";
 function uuidv4() {
   return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
     (
@@ -66,27 +19,37 @@ function replaceInpImg(curentInp, imgFileName) {
   imgTarget.setAttribute('src', `https://storage.googleapis.com/img_bucket_trial/${imgFileName.name}`);
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll('input[name="imgfile"]').forEach((item, index) => {
-    item.addEventListener("input", (event) => {
+    item.addEventListener("input", async (event) => {
       let postid = uuidv4();
       let inputElem = event.target;
       let file = inputElem.files[0];
 
       let blob = file.slice(0, file.size, "image/jpeg");
       let newFile = new File([blob], `${usernameExport}_${index}_${postid}_post.jpeg`, { type: "image/jpeg" });
-      // replaceInpImg(item, newFile);
-      console.log(newFile.name);//true
+      console.log(newFile.name); //true
       console.log(usernameExport);
       let formData = new FormData();
       formData.append("imgfile", newFile);
-      fetch("/upload", {
-        method: "POST",
-        body: formData,
-      }).then((res) => console.log(res.text()))
-      .catch(error => console.log(error));
-      // .then((res) => res.text());
-      //   .then(loadPosts());
+
+      try {
+        const response = await fetch("/upload", {
+          method: "POST",
+          body: formData,
+        });
+        const result = await response.text();
+
+        // Проверяем, что загрузка была успешной
+        if (result === "Success") {
+          // Устанавливаем картинку после успешной загрузки
+          replaceInpImg(item, newFile);
+        } else {
+          console.error("Произошла ошибка при загрузке файла");
+        }
+      } catch (error) {
+        console.error("Произошла ошибка при загрузке файла:", error);
+      }
     });
   });
 });
