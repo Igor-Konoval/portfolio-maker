@@ -53,7 +53,6 @@ class AuthController {
     async login(req, res) {
         try {
             const {username, password} = req.body;
-            // const usernameExport = username;
             const user = await User.findOne({username});
            
             if (!user) {

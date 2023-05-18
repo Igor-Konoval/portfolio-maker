@@ -40,7 +40,6 @@ class homeController {
                     let decodedToken = jwt.verify(token, secret);
                     id = decodedToken.id;
                     username = decodedToken.username;
-                    global.usernameExport = decodedToken.username;
                 }
             }
 
@@ -50,7 +49,7 @@ class homeController {
             let editCab = await EditCabinet.findById(id);
             
             if (editCab) {
-                let editEl = editCab.value; //deleted await
+                let editEl = editCab.value;
                 editCabArr.push(...editEl);
             }
 
@@ -92,7 +91,7 @@ class homeController {
 
             let editBlocks = await BlocksCabinet.findById(id);
             let usernameExport = username;
-            console.log(usernameExport);
+
             if (editBlocks) {
                 let allBlocks = await editBlocks.value;
                 editBlocksArr.push(...allBlocks);
@@ -100,7 +99,7 @@ class homeController {
             } else {
                 checkDb = false;
             }
-            console.log('usernameExport userCabinet');
+
             let token = req.cookies.jwt;
             username = "non user";
             if (token) {

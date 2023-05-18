@@ -16,7 +16,7 @@ function editValue(targ, index) {
 }
 
 let allElemEdit = document.querySelectorAll('[contenteditable]');
-allElemEdit = Array.from(allElemEdit).filter(el => el.offsetParent !== null);//trouble
+allElemEdit = Array.from(allElemEdit).filter(el => el.offsetParent !== null);
 
 allElemEdit.forEach((el, index) => {
   let posL = el.pageXOffset + el.getBoundingClientRect().right + 10;

@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', (event)=> {
 })
 
 form.onsubmit = function(event) {
-    console.log('success submit');
     localStorage.removeItem('username');
     localStorage.setItem('username', usernameInput.value);
     event.preventDefault();

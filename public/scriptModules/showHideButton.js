@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
   function hideParent(parent, index) {
    parent.setAttribute(`block${index}`, true);
    parent.style.display = 'none';
-   console.log(parent.getAttribute(`block${index}`));
   }
 
   function hideInput(ind) {
@@ -22,15 +21,14 @@ allButShowHide.forEach((el, index) => {
     let target = event.target;    
     let parent = target.parentElement;
     
-    parent.querySelectorAll('[contenteditable]').forEach(item => {//parent
+    parent.querySelectorAll('[contenteditable]').forEach(item => {
       let ind = item.getAttribute('indexEdit');
       
       hideInput(ind);
     })
 
     let elAttr = Boolean(target.getAttribute('show_block'));
-    // target.setAttribute('show_block', !elAttr);//true
-    target.setAttribute('show_block', true);//true
+    target.setAttribute('show_block', true);
     hideParent(parent, index);
   }); 
 });

@@ -8,10 +8,8 @@ class storageController {
   async getFilesMethod(req, res) {
       try {
         const usernameExport = req.query.usernameExport;
-        console.log(usernameExport + ' usernameExport');
         let user = await User.findOne({ username: usernameExport });
         let id = user._id;
-        console.log(id + ' id');
         let userImages = await ImgCabinet.findById(id);
         const collImgs = userImages.value;
 
@@ -43,7 +41,7 @@ class storageController {
           if (!imgBd) {
             imgBd = new ImgCabinet({
               _id: id,
-              value: [req.file.originalname] // Создайте массив значений, так как вы храните массив в поле "value"
+              value: [req.file.originalname]
             });
         
             await imgBd.save();
@@ -52,9 +50,10 @@ class storageController {
             const existingFile = imgBd.value.find(value => value.startsWith(`${nameAndIndexImg[0]}_${nameAndIndexImg[1]}_`));
         
             if (existingFile) {
-              // Если файл с указанным именем и индексом уже существует, обновляем его
+
               await storageModel.bucket.file(existingFile).delete();
               const updatedValue = imgBd.value.map(value => {
+
                 if (value === existingFile) {
                   return req.file.originalname;
                 }
@@ -64,7 +63,6 @@ class storageController {
               imgBd.value = updatedValue;
               await imgBd.save();
             } else {
-              // Если файла нет в коллекции, добавляем его
               imgBd.value.push(req.file.originalname);
               await imgBd.save();
             }

@@ -36,7 +36,6 @@ class ContentEditor {
         blocks.forEach((el, index) => {
             el.parentElement.setAttribute(`block${index}`, dataBlocks[index]);
             el.setAttribute('show_block', dataBlocks[index]);
-            console.log(el.parentElement.getAttribute(`block${index}`));
             if (el.parentElement.getAttribute(`block${index}`) === 'true') {
                 el.parentElement.style.display = 'none';
             } else {

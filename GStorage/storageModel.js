@@ -16,7 +16,7 @@ const storage = new Storage({
     keyFilename,
 });
 
-const bucket = storage.bucket("img_bucket_trial"); // Get this from Google Cloud -> Storage
+const bucket = storage.bucket("img_bucket_trial");
 
 module.exports = {
     bucket,

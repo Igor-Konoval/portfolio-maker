@@ -30,11 +30,10 @@ document.addEventListener("DOMContentLoaded", function () {
           method: "POST",
           body: formData,
         });
+
         const result = await response.text();
 
-        // Проверяем, что загрузка была успешной
         if (result === "Success") {
-          // Устанавливаем картинку после успешной загрузки
           replaceInpImg(item, newFile);
         } else {
           console.error("Произошла ошибка при загрузке файла");
