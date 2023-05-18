@@ -123,11 +123,13 @@ class homeController {
         try {
             let token = req.cookies.jwt;
             let username = "non user";
+            let usernameExport = '';
             if (token) {
                 let editCabArr = [];
                 let editBlocksArr = [];
                 let decodedToken = jwt.verify(token, secret);
                 username = decodedToken.username;
+                usernameExport = username;
                 const id = decodedToken.id;
                 let checkDb = true;
 
@@ -150,7 +152,7 @@ class homeController {
                 }
 
                 if (checkDb) {
-                    return res.render('cabinet', {title: 'edit cabinet', username, dataOne: editCabArr, dataTwo: editBlocksArr});
+                    return res.render('cabinet', {title: 'edit cabinet', username, usernameExport, dataOne: editCabArr, dataTwo: editBlocksArr});
                 } else {
                     return res.render('cabinet', {title: 'cabinet', username});
                 }

@@ -7,19 +7,13 @@ function uuidv4() {
   );
 }
 
-// function createImg(imgFile) {
-//   let imgUpload = document.createElement('img');
-//   imgUpload.setAttribute('src', imgFile.name);
-// }
-
 function replaceInpImg(curentInp, imgFileName) {
   const imgTarget = curentInp.parentElement.previousElementSibling;
-  console.log(imgTarget);
-  console.log(`https://storage.googleapis.com/img_bucket_trial/${imgFileName.name}`);
   imgTarget.setAttribute('src', `https://storage.googleapis.com/img_bucket_trial/${imgFileName.name}`);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+
   document.querySelectorAll('input[name="imgfile"]').forEach((item, index) => {
     item.addEventListener("input", async (event) => {
       let postid = uuidv4();
@@ -28,8 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       let blob = file.slice(0, file.size, "image/jpeg");
       let newFile = new File([blob], `${usernameExport}_${index}_${postid}_post.jpeg`, { type: "image/jpeg" });
-      console.log(newFile.name); //true
-      console.log(usernameExport);
       let formData = new FormData();
       formData.append("imgfile", newFile);
 
@@ -55,18 +47,23 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function loadPosts() {
-    fetch("/upload")
-        .then((res) => res.json())
-        .then((x) => {
-            for (y = 0; y < x[0].length; y++) {
-                console.log(x[0][y]);
-                const newimg = document.createElement("img");
-                newimg.setAttribute(
-                "src",
-                "https://storage.googleapis.com/img_bucket_trial/" + x[0][y].id);
-                newimg.setAttribute("width", 50);
-                newimg.setAttribute("height", 50);
-                document.getElementById("images").appendChild(newimg);
-            }
-        });
+  const loadImgs = document.querySelectorAll('img[src]');
+  try {
+    fetch(`/upload?usernameExport=${usernameExport}`)
+    .then((res) => res.json())
+    .then((x) => {
+      for (let y = 0; y < x.length; y++) {
+        let pos = x[y].split('_')[1];
+
+        loadImgs.forEach((item, index) => {
+          if (index == pos) {
+            item.setAttribute('src', `https://storage.googleapis.com/img_bucket_trial/${x[y]}`);
+          }
+        })
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }   
 }
+window.addEventListener('load', loadPosts);

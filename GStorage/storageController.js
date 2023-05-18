@@ -7,17 +7,15 @@ const { secret } = require('../config.js');
 class storageController {
   async getFilesMethod(req, res) {
       try {
-        let { username } = req.params;
-        let user = await User.findOne({ username });
+        const usernameExport = req.query.usernameExport;
+        console.log(usernameExport + ' usernameExport');
+        let user = await User.findOne({ username: usernameExport });
         let id = user._id;
+        console.log(id + ' id');
         let userImages = await ImgCabinet.findById(id);
         const collImgs = userImages.value;
-        
-        const [files] = await storageModel.bucket.getFiles({
-          prefix: `${userName}/`,
-        });
 
-        res.send([files]);
+        res.send(collImgs);
         console.log("Success");
       } catch (error) {
         res.send("Error:" + error);
