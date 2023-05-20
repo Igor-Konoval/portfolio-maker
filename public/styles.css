@@ -632,6 +632,10 @@ div .log-reg {
     rotate: 180deg;
 }
 
+.staticImagesContainer {
+    visibility: hidden;
+}
+
 .content-three-img {
     padding-top: 15px;
 }

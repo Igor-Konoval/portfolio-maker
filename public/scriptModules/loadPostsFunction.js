@@ -1,3 +1,7 @@
+function displayStaticImg(imgElem) {
+  imgElem.style.visibility = 'visible';
+}
+
 function loadPosts() {
     const loadImgs = document.querySelectorAll('img[src]');
     try {
@@ -11,6 +15,7 @@ function loadPosts() {
             if (index == pos) {
               item.setAttribute('src', `https://storage.googleapis.com/img_bucket_trial/${x[y]}`);
             }
+            displayStaticImg(item);
           })
         }
       });
