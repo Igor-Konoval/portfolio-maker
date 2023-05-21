@@ -27,10 +27,14 @@
         -webkit-background-clip: text;
     }
 
+    #contentContainer {
+       visibility: hidden;
+    }
+
  </style>
 <body>
     <!-- header  -->
-
+<div id="contentContainer">
     <%- include('./modules/header') %>
     <div id="button_redact">
         <button class="edit-btn">Edit</button>
@@ -250,11 +254,13 @@
     </div>
     <button id="return__blocks">return all blocks</button>
     <%- include('./modules/footer') %>
+</div>
     <script src="/scriptModules/cabinet.js"></script>
     <script src="/scriptModules/showHideButton.js"></script>
     <script src="/scriptModules/form_cabinet.js"></script>
-    <script src="/scriptModules/allEditElements.js"></script>
-    <script src="/scriptModules/clientFunction.js"></script>
+    <!-- <script type="module" src="/scriptModules/allEditElements.js"></script>
+    <script src="/scriptModules/clientFunction.js"></script> -->
+    <script src="/scriptModules/chanse.js"></script>
     <script src="/scriptModules/loadPostsFunction.js"></script>
     <script>
         let usernameExport = "<%= usernameExport %>";

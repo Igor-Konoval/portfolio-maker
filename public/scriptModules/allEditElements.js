@@ -1,5 +1,17 @@
 const username = window.location.pathname.split('/')[2];
-const url = `http://localhost:3000/cabinet/edit_elem_cabinet/${username ? username : ''}`;
+// const url = `http://localhost:3000/cabinet/edit_elem_cabinet/${username ? username : ''}`;
+
+// import { ContentEditor} from './Repository.js'
+
+// try {
+    
+// const contentEditor = new ContentEditor();
+// contentEditor.initialize(url);
+// } catch (error) {
+//     console.log(error);
+// }
+
+
 
 class ContentEditor {
     constructor() {
@@ -7,9 +19,9 @@ class ContentEditor {
     }
 
     initialize() {
-        document.addEventListener('DOMContentLoaded', () => {
+ 
             this.sendAjaxRequest();
-        });
+    
     }
 
     sendAjaxRequest() {
@@ -52,6 +64,8 @@ class ContentEditor {
         })
     }
 }
+
+
 
 let contentEditor = new ContentEditor();
 contentEditor.initialize();

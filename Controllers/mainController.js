@@ -31,15 +31,22 @@ class homeController {
             let { username } = req.params;
             let user;
             let id;
-            if (username !== 'undefined') {
+            console.log(typeof username);
+            console.log('cabinet first');
+            if (username != 'undefined') {
+            // if (!username) {
                 user = await User.findOne({ username });
                 id = user._id;
+                console.log('okay');
+                console.log(id + ' first');
             } else {
                 let token = req.cookies.jwt;
                 if (token) {
                     let decodedToken = jwt.verify(token, secret);
                     id = decodedToken.id;
                     username = decodedToken.username;
+                    console.log(id + ' twos');
+
                 }
             }
 
@@ -47,10 +54,11 @@ class homeController {
             let editBlocksArr = [];
 
             let editCab = await EditCabinet.findById(id);
-            
+            // console.log(editCab + ' editCab id');
             if (editCab) {
                 let editEl = editCab.value;
                 editCabArr.push(...editEl);
+                // console.log(editCabArr + ' editCab id');
             }
 
             let editBlocks = await BlocksCabinet.findById(id);
@@ -59,7 +67,7 @@ class homeController {
                 let allBlocks = await editBlocks.value;
                 editBlocksArr.push(...allBlocks);
             }
-            
+            console.log(typeof editCabArr, typeof editBlocksArr);
             return res.json({ dataOne: editCabArr, dataTwo: editBlocksArr});
         } catch (e) {
             res.status(403).json({message:"error", error: e});
@@ -122,6 +130,7 @@ class homeController {
         try {
             let token = req.cookies.jwt;
             let username = "non user";
+            console.log('cabinet');
             let usernameExport = '';
             if (token) {
                 let editCabArr = [];

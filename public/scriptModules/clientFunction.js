@@ -14,34 +14,35 @@ function replaceInpImg(curentInp, imgFileName) {
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  document.querySelectorAll('input[name="imgfile"]').forEach((item, index) => {
-    item.addEventListener("input", async (event) => {
-      let postid = uuidv4();
-      let inputElem = event.target;
-      let file = inputElem.files[0];
+document.querySelectorAll('input[name="imgfile"]').forEach((item, index) => {
+  item.addEventListener("input", async (event) => {
+    let postid = uuidv4();
+    let inputElem = event.target;
+    let file = inputElem.files[0];
 
-      let blob = file.slice(0, file.size, "image/jpeg");
-      let newFile = new File([blob], `${usernameExport}_${index}_${postid}_post.jpeg`, { type: "image/jpeg" });
-      let formData = new FormData();
-      formData.append("imgfile", newFile);
+    let blob = file.slice(0, file.size, "image/jpeg");
+    let newFile = new File([blob], `${usernameExport}_${index}_${postid}_post.jpeg`, { type: "image/jpeg" });
+    let formData = new FormData();
+    formData.append("imgfile", newFile);
 
-      try {
-        const response = await fetch("/upload", {
-          method: "POST",
-          body: formData,
-        });
-
-        const result = await response.text();
-
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/upload");
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        const result = xhr.responseText;
         if (result === "Success") {
           replaceInpImg(item, newFile);
         } else {
           console.error("Произошла ошибка при загрузке файла");
         }
-      } catch (error) {
-        console.error("Произошла ошибка при загрузке файла:", error);
+      } else {
+        console.error("Произошла ошибка при загрузке файла:", xhr.status);
       }
-    });
+    };
+    xhr.onerror = function () {
+      console.error("Произошла ошибка при загрузке файла");
+    };
+    xhr.send(formData);
   });
 });
-
+});
