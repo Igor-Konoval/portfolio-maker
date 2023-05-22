@@ -128,7 +128,7 @@ class DataProvider {
       this.xhr.open('GET', this.url);
       this.xhr.onload = () => {
         if (this.xhr.status === 200) {
-          const data = JSON.parse(this.xhr.responseText);
+          const data = JSON.parse(this.xhr.response);
           resolve(data);
         } else {
           reject(`Ошибка получения данных: ${this.xhr.status}`);
@@ -185,9 +185,11 @@ class ContentEditor {
   }
 }
 
+
 class ImageUploader {
   constructor(username) {
     this.username = username;
+    this.handleImageUpload = this.handleImageUpload.bind(this);
   }
 
   generateUuid() {
@@ -204,14 +206,16 @@ class ImageUploader {
     imgTarget.setAttribute('src', `https://storage.googleapis.com/img_bucket_trial/${imgFileName.name}`);
   }
 
-  handleImageUpload(inputElement) {
+  handleImageUpload(inputElement, index) {
     return new Promise((resolve, reject) => {
       let postid = this.generateUuid();
       let file = inputElement.files[0];
-
+      console.log(file, ' file finded');
       let blob = file.slice(0, file.size, 'image/jpeg');
-      let newFile = new File([blob], `${this.username}_${postid}_post.jpeg`, { type: 'image/jpeg' });
+      let newFile = new File([blob], `${this.username}_${index}_${postid}_post.jpeg`, { type: 'image/jpeg' });
       let formData = new FormData();
+      console.log(newFile);
+      console.log(this.username);
       formData.append('imgfile', newFile);
 
       const xhr = new XMLHttpRequest();
@@ -236,11 +240,11 @@ class ImageUploader {
   }
 
   initialize() {
-    document.querySelectorAll('input[name="imgfile"]').forEach((item) => {
+    document.querySelectorAll('input[name="imgfile"]').forEach((item, index) => {
       item.addEventListener('input', async (event) => {
         try {
           const inputElem = event.target;
-          const newFile = await this.handleImageUpload(inputElem);
+          const newFile = await this.handleImageUpload(inputElem, index);
           this.replaceImage(item, newFile);
         } catch (error) {
           console.error(error);
@@ -264,23 +268,76 @@ class ImageUploader {
 //   Promise.all(arr).then(() => container.style.display = 'block');
 // });
 
+// function uuidv4() {
+//   return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+//     (
+//       c ^
+//       (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+//     ).toString(16)
+//   );
+// }
+
+// function replaceInpImg(curentInp, imgFileName) {
+//   const imgTarget = curentInp.parentElement.previousElementSibling;
+//   imgTarget.setAttribute('src', `https://storage.googleapis.com/img_bucket_trial/${imgFileName.name}`);
+// }
+
+// document.addEventListener("DOMContentLoaded", function () {
+
+// document.querySelectorAll('input[name="imgfile"]').forEach((item, index) => {
+//   item.addEventListener("input", async (event) => {
+//     let postid = uuidv4();
+//     let inputElem = event.target;
+//     let file = inputElem.files[0];
+
+//     let blob = file.slice(0, file.size, "image/jpeg");
+//     let newFile = new File([blob], `${usernameExport}_${index}_${postid}_post.jpeg`, { type: "image/jpeg" });
+//     let formData = new FormData();
+//     formData.append("imgfile", newFile);
+
+//     const xhr = new XMLHttpRequest();
+//     xhr.open("POST", "/upload");
+//     xhr.onload = function () {
+//       if (xhr.status === 200) {
+//         const result = xhr.responseText;
+//         if (result === "Success") {
+//           replaceInpImg(item, newFile);
+//         } else {
+//           console.error("Произошла ошибка при загрузке файла");
+//         }
+//       } else {
+//         console.error("Произошла ошибка при загрузке файла:", xhr.status);
+//       }
+//     };
+//     xhr.onerror = function () {
+//       console.error("Произошла ошибка при загрузке файла");
+//     };
+//     xhr.send(formData);
+//   });
+// });
+// });
+
+
 document.addEventListener('DOMContentLoaded', function () {
   const username = window.location.pathname.split('/')[2];
+  console.log(username, ' eventListener back');
   const url = `http://localhost:3000/edit_elem_cabinet/${username}`;
   let dataProvider = new DataProvider(url);
   let contentEditor = new ContentEditor(dataProvider);
-  let imageUploader = new ImageUploader(username);
+  let imageUploader = new ImageUploader(usernameExport);
 
   let promise1 = contentEditor.initialize();
   let promise2 = imageUploader.initialize();
-
+  
   Promise.all([promise1, promise2])
+  // Promise.all([promise1])
     .then(() => {
       let contentContainer = document.getElementById('contentContainer');
       contentContainer.style.visibility = 'visible';
-      // alert('visible');
     })
     .catch((error) => {
       console.error(`Ошибка при инициализации: ${error}`);
     });
 });
+
+export {DataProvider, ContentEditor}; 
