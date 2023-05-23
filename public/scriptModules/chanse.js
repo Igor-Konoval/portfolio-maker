@@ -340,4 +340,4 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-export {DataProvider, ContentEditor}; 
+export {DataProvider}; 
