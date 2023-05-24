@@ -67,7 +67,7 @@ class homeController {
                 let allBlocks = await editBlocks.value;
                 editBlocksArr.push(...allBlocks);
             }
-            console.log(typeof editCabArr, typeof editBlocksArr);
+            console.log(typeof editCabArr, typeof editBloc);
             return res.json({ dataOne: editCabArr, dataTwo: editBlocksArr});
         } catch (e) {
             res.status(403).json({message:"error", error: e});
@@ -197,6 +197,7 @@ class homeController {
         if (token) {
             let decodedToken = jwt.verify(token, secret);
             username = decodedToken.username;
+            let usernameExport = username;
             const id = decodedToken.id;
             let editCab = await EditCabinet.findById(id);
             
@@ -224,7 +225,10 @@ class homeController {
             }
             await editBlocks.save();
     
-            return res.render('cabinet', {title: 'cabinet', username});
+            return res.render('cabinet', {title: 'cabinet', username, usernameExport});
+            // console.log(username);
+            // // return res.redirect(`cabinet/${username}`);
+            // return res.status(200);
         } else {
             return res.render('./modules/login', {title: 'login', username});
         }
