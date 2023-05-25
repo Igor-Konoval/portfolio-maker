@@ -319,6 +319,7 @@ class ImageUploader {
 
 
 document.addEventListener('DOMContentLoaded', function () {
+  console.log('this usernameExport', usernameExport);
   const username = window.location.pathname.split('/')[2];
   console.log(username, ' eventListener back');
   const url = `http://localhost:3000/edit_elem_cabinet/${username}`;

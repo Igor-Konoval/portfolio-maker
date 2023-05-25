@@ -351,8 +351,22 @@ body {
     position: absolute;
     top: 50px;
     right: 200px;
-    width: 120px;
-    height: 40px;
+    width: 140px;
+    height: 50px;
+    cursor: pointer;
+    overflow: hidden;
+    border: none;
+    font-size: 17px;
+    outline: none;
+    background-color: #6f6f6f;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.check__content:hover {
+    background-color: #ccc;
 }
 
 .content-one-text :last-child {
@@ -499,6 +513,21 @@ div .log-reg {
     font-weight: 600;
 }
 
+#email p {
+    display: inline-block;
+    margin: 0;
+}
+
+#address p {
+    display: inline-block;
+    margin: 0;
+}
+
+#phone p {
+    display: inline-block;
+    margin: 0;
+}
+
 .contacts .container #phone:not(br:first-child) {
     color: #717171;
     font-size: 18px;
@@ -638,9 +667,9 @@ div .log-reg {
     rotate: 180deg;
 }
 
-.staticImagesContainer {
+/* .staticImagesContainer {
     visibility: hidden;
-}
+} */
 
 .content-three-img {
     padding-top: 15px;
@@ -826,15 +855,23 @@ div .log-reg {
     height: auto;
 }
 
-.content-six-block :nth-child(2) {
+/* .content-six-block :nth-child(2) {
     margin-top: 35px;
     color: #717171;
     text-transform: uppercase;
     font-weight: bold;
     opacity: 0.8;
-}
+} */
 
-.content-six-block :nth-child(3) {
+/* .content-six-block p[contenteditable]:first-child {
+    margin-top: 35px;
+    color: #717171;
+    text-transform: uppercase;
+    font-weight: bold;
+    opacity: 0.8;
+} */
+
+/* .content-six-block :nth-child(3) {
     font-size: 28px;
     margin: 0;
     color: #15263e;
@@ -844,7 +881,66 @@ div .log-reg {
     color: #717171;
     line-height: 2.8;
     word-spacing: 1px;
+} */
+
+.content-six-block > [contenteditable="true"]:first-of-type {
+    /* Стили для первого <p> */
+    margin-top: 35px;
+    color: #717171;
+    text-transform: uppercase;
+    font-weight: bold;
+    opacity: 0.8;
 }
+
+.content-six-block > [contenteditable="true"] + h6 {
+    /* Стили для первого <h6> */
+    font-size: 28px;
+    margin: 0;
+    color: #15263e;
+}
+
+.content-six-block > [contenteditable="true"]:last-of-type {
+    /* Стили для последнего <p> */
+    color: #717171;
+    line-height: 2.8;
+    word-spacing: 1px;
+}
+
+.input-img {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    background-color: #979797;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .input-img:hover {
+    background-color: #ccc;
+  }
+  
+  .input-img input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .input-img .file-label {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
 
 /* content-seven */
 

@@ -11,6 +11,14 @@ class storageController {
         let user = await User.findOne({ username: usernameExport });
         let id = user._id;
         let userImages = await ImgCabinet.findById(id);
+        if (!userImages) {
+          userImages = new ImgCabinet({
+            _id: id,
+            value: []
+          });
+      
+          await userImages.save();
+        }
         const collImgs = userImages.value;
 
         res.send(collImgs);

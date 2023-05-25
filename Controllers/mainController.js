@@ -30,14 +30,16 @@ class homeController {
         try {
             let { username } = req.params;
             let user;
+            let usernameExport;
             let id;
             console.log(typeof username);
             console.log('cabinet first');
-            if (username != 'undefined') {
+            if (username != 'undefined') { //maybe trouble
             // if (!username) {
                 user = await User.findOne({ username });
                 id = user._id;
                 console.log('okay');
+                usernameExport = username;
                 console.log(id + ' first');
             } else {
                 let token = req.cookies.jwt;
@@ -45,6 +47,7 @@ class homeController {
                     let decodedToken = jwt.verify(token, secret);
                     id = decodedToken.id;
                     username = decodedToken.username;
+                    usernameExport = username;
                     console.log(id + ' twos');
 
                 }
@@ -68,7 +71,7 @@ class homeController {
                 editBlocksArr.push(...allBlocks);
             }
             console.log(typeof editCabArr, typeof editBloc);
-            return res.json({ dataOne: editCabArr, dataTwo: editBlocksArr});
+            return res.json({ dataOne: editCabArr, dataTwo: editBlocksArr, usernameExport});
         } catch (e) {
             res.status(403).json({message:"error", error: e});
         }
@@ -80,6 +83,7 @@ class homeController {
             let user = await User.findOne({ username });
 
             if (!user) {
+                console.log('this report not user define!!!!!!!');
                 return res.status(404).render('404', { title: 'Not Found' });
             }
 
@@ -162,7 +166,7 @@ class homeController {
                 if (checkDb) {
                     return res.render('cabinet', {title: 'edit cabinet', username, usernameExport, dataOne: editCabArr, dataTwo: editBlocksArr});
                 } else {
-                    return res.render('cabinet', {title: 'cabinet', username});
+                    return res.render('cabinet', {title: 'cabinet', username, usernameExport});
                 }
             } else {
                 return res.render('./modules/login', {title: 'login', username});
