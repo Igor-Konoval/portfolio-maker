@@ -1043,7 +1043,12 @@ footer div {
         text-align: center;
     }
 }
-
+@media (max-width: 1255px) {
+    .container {
+        margin-left: 15px;
+        margin-right: 5px;
+    }
+}
 
 @media (max-width: 950px) {
 

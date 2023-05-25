@@ -34,11 +34,12 @@ class homeController {
             let id;
             console.log(typeof username);
             console.log('cabinet first');
+            console.log(`37 allElementCabinet ${username}`);
             if (username != 'undefined') { //maybe trouble
             // if (!username) {
                 user = await User.findOne({ username });
                 id = user._id;
-                console.log('okay');
+                console.log('42 okay');
                 usernameExport = username;
                 console.log(id + ' first');
             } else {
@@ -93,7 +94,7 @@ class homeController {
 
             let editCab = await EditCabinet.findById(id);
             let checkDb = true;
-            
+            //this place v1
             if (editCab) {
                 let editEl = editCab.value; 
                 editCabArr.push(...editEl);
@@ -122,7 +123,7 @@ class homeController {
             if (checkDb) {
                 return res.render('clientCabinet', {title: 'your cabinet', username, usernameExport, dataOne: editCabArr, dataTwo: editBlocksArr});
             } else {
-                return res.render('clientCabinet', {title: 'cabinet', username});
+                return res.render('clientCabinet', {title: 'cabinet', username, usernameExport});
             }
 
         } catch (error) {

@@ -7,8 +7,15 @@ const { check } = require('express-validator');
 
 
 router.post('/registration', [
-    check('username', 'пустое поле имени').isEmpty(), 
-    check('password', 'ошибка длинны пароля').isLength({min:'4', max:'26'})],controller.registration)
+    check('username', 'пустое поле имени').notEmpty()
+    .custom(value => {
+              if (value.match(/[|/\\{}[\]_]/)) {
+                throw new Error("Имя пользователя содержит недопустимые символы | / \\ { } [ ] _");
+              }
+              return true;
+            }),
+    check('password', 'ошибка длинны пароля, допустимо от 4 до 26').isLength({min:'4', max:'26'})]
+    ,controller.registration)
 router.post('/login', controller.login)
 router.get('/users', authMiddleWaree(["ADMIN"]), controller.getUsers)
 router.get('/logout_user', controller.logOut);
