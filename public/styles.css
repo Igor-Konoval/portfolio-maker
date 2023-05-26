@@ -192,12 +192,12 @@ body {
 
 .header_twosline_text {
     font-size: 233px;
-    padding-bottom: 3%;
-    padding-top: 2%;
+    /* padding-bottom: 3%;
+    padding-top: 2%; */
     display: block;
     font-weight: 600; 
     letter-spacing: 25px;  
-    line-height: 95%;
+    /* line-height: 95%; */
     margin: 0;
     color: #fff; 
     background: linear-gradient(75deg, #a21af0, #ff0062);
@@ -382,7 +382,7 @@ body {
 
 .content-graphyc {
     width: 337px;
-    height: 337px;
+    height: auto;
 }
 
 .content-graphyc h6 {
@@ -719,6 +719,8 @@ div .log-reg {
 
 .content-fore-title p {
     font-size: 23px;
+    max-width: max-content;
+    margin: 20px auto;
     color: black;
     word-spacing: 3px;
     font-weight: normal;
@@ -783,6 +785,8 @@ div .log-reg {
     opacity: 0.8;
     font-size: 25px;
     letter-spacing: 1px;
+    max-width: max-content;
+    margin: 20px auto;
 }
 
 .block-content-five-one {
@@ -820,7 +824,7 @@ div .log-reg {
 
 .content-six {
     position: relative;
-    height: 860px;
+    height: auto;
 }
 
 .content-six-title {
@@ -847,7 +851,7 @@ div .log-reg {
 
 .content-six-block {
     width: 385px;
-    height: 490px;
+    height: auto;
 }
 
 .content-six-block img {
@@ -983,7 +987,7 @@ div .log-reg {
 }
 
 .contain-inputs input {
-    width: 305px;
+    width: 95%;
     color: #939393;
     font-size: 25px;
     padding: 0 0 0 25px;
@@ -1090,7 +1094,11 @@ footer div {
     }
 
     .container-content-one {
-        display: block;
+        /* display: block; */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
         
     }
 
@@ -1121,7 +1129,6 @@ footer div {
     .content-graphyc {
         width: 90%;
         margin-top: 10px;
-        height: 260px;
         margin-right: auto;
         margin-left: auto;
     }
@@ -1286,7 +1293,7 @@ footer div {
     }
 
     .content-six-block {
-        font-size: 2.1vw;
+        /* font-size: 2.1vw; */
         height: auto;
     }
 
@@ -1322,16 +1329,20 @@ footer div {
         margin-bottom: 24px;
     }
 
-    .container-form >input {
-        width: 80%;
-        margin-left: -14%;
-        min-width: 270px;
+    .container-form name[input-message] {
+        width: 93%;
+        padding: 0 0 0 25px;
+        /* margin-left: -14%;
+        min-width: 270px; */
     }
 
     input[class="button"] {
         margin-bottom: 25px;
     }
 
+    .container-form input[name="button"] {
+        margin: 15px auto;
+    }
 }
 
 @media (max-width: 750px) {
@@ -1357,6 +1368,12 @@ footer div {
         margin: 0;
     }
 
+}
+
+@media (max-width: 540px) {
+    .gallery-img-content img {
+        margin-left: 16px;
+    }
 }
 
 @media (max-width: 478px) {
@@ -1467,11 +1484,12 @@ footer div {
 
     .content-three-text p::before {
         font-size: 35.5vw; 
+        left: 0;
     }
 
     .content-three-text p::after {
         font-size: 35.5vw;
-        right: -59px;
+        right: 0;
     }
 
     .content-three-img {
@@ -1572,8 +1590,9 @@ footer div {
     }
 
     .content-six-block {
-        font-size: 2.1vw;
+        /* font-size: 2.1vw; */
         height: auto;
+        width: auto;
     }
 
     .content-six-block :nth-child(3) {
@@ -1606,12 +1625,6 @@ footer div {
 
     #form p {
         margin-bottom: 24px;
-    }
-
-    .container-form >input {
-        width: 80%;
-        margin-left: -14%;
-        min-width: 270px;
     }
 
     input[class="button"] {
