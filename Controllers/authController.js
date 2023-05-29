@@ -25,6 +25,14 @@ class AuthController {
             if (!errors.isEmpty()) {
                 return res.status(400).json({message: "Ошибка при регистрации", errors});
             }
+            
+            // if (!errors.isEmpty()) {
+            //     // Формирование массива сообщений об ошибках
+            //     const errorMessages = errors.array().map(error => error.msg);
+          
+            //     // Передача сообщений об ошибках на страницу регистрации
+            //     return res.render('modules/registr', { errors: errorMessages, title: "registration", username: 'non user' });
+            // }
 
             const {username, password} = req.body;
             const candidate = await User.findOne({username});

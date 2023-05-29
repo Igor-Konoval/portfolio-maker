@@ -9,8 +9,8 @@ const { check } = require('express-validator');
 router.post('/registration', [
     check('username', 'пустое поле имени').notEmpty()
     .custom(value => {
-              if (value.match(/[|/\\{}[\]_]/)) {
-                throw new Error("Имя пользователя содержит недопустимые символы | / \\ { } [ ] _");
+              if (value.match(/[|/\\{}[\]_\s]/)) {
+                throw new Error("Имя пользователя содержит недопустимые символы | / \\ { } [ ] _ пробел");
               }
               return true;
             }),

@@ -14,7 +14,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100%;
         width: 1000px;
         max-width: 1200px;
         margin: 0 auto;
@@ -40,15 +39,11 @@
         margin-bottom: 10px;
     }
 
-    input[type="input"] {
-        text-align: center;
-
-    }
-
     input[type="input"], input[type="password"] {
         width: 100%;
         padding: 10px;
-        margin-bottom: 20px;
+        margin-bottom: 31px;
+        text-align: center;
         border: none;
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -92,24 +87,168 @@
         border-color: #fff;
     }
 
-    @media (max-width: 951px) {
-    .container-form-reg {
-        top: 68%;
+    .error_name_Empty {
+        color: red;
+        display: none;
     }
-}
+
+    .error_name_Validation {
+        color: red;
+        display: none;
+    }
+
+    .error_password {
+        color: red;
+        display: none;
+    }
+
+    @media (max-width: 951px) {
+        .container-form-reg {
+            top: 68%;
+        }
+
+        .error_name_Validation p {
+            margin: 0;
+        }
+
+        .container-form-reg {
+           top: 58%;
+        }
+
+        .error_name_Empty p {
+            margin: 0 0 10px 0;
+        }
+
+        .itemNav {
+            padding: 5px;
+        }
+
+        .error_password p {
+            margin: 0;
+        }
+
+        .container_reg {
+            padding: 42px 20px 0 20px;
+            margin-bottom: -17px;
+        }
+        
+        input[type="input"], input[type="password"] {
+            margin-bottom: 5px;
+        }
+
+        .registr_form {
+            margin-bottom: -24px;
+        }
+        
+    }
+
+    @media (max-width: 478px) {
+        .container_reg {
+           width: 214px; 
+        }
+
+        .itemNav {
+            padding: 5px;
+            margin: auto;
+        }
+
+        .container-form-reg {
+            top: 48%;
+        }
+
+        .headerbg {
+            height: 664px;
+        }
+        
+    }
 </style>
 <body>
     <%- include('./header') %>
     <div class="container-form-reg">    
         <div class="container_reg">
             <form action="/auth/registration" method="post" class="registr_form">
-                <label>Username</label><br>
-                <input type="input" name="username" id="regOne"> <br><br>
-                <label>Surname</label><br>
-                <input type="password" name="password" id="regTwo"> <br><br>
-                <input type="submit" value="send data"> <br><br>
+                <label>Name</label><br>
+                <input type="input" name="username" id="regOne"> <br>
+                <div class="error_name_Empty">
+                    <p>пустое поле имени</p>
+                </div>
+                <div class="error_name_Validation">
+                    <p>Имя пользователя содержит недопустимые символы | / \\ { } [ ] _ пробел</p>
+                </div>
+                <label>Password</label><br>
+                <input type="password" name="password" id="regTwo"> <br>
+                <div class="error_password">
+                    <p>ошибка длинны пароля, допустимо от 4 до 26</p>
+                </div>
+                <input type="submit" value="send data" id="submit_send_data_registration"> <br><br>
             </form>
         </div>
+        <script>
+            const formRegistation = document.querySelector('.registr_form');
+            
+           let regOne = document.getElementById('regOne');
+           
+        //    regOne.onchange = (event) => {
+        //         let targ = event.target;
+                
+        //         if (!targ.value.length) {
+        //             document.querySelector('.error_name .Empty').style.display = 'block';
+        //         } else {
+        //             document.querySelector('.error_name .Empty').style.display = 'none';
+        //         }
+
+        //         if (targ.value.match(/[|/\\{}[\]_\s]/)) {
+        //             document.querySelector('.error_name .Validation').style.display = 'block';
+        //         } else {
+        //             document.querySelector('.error_name .Validation').style.display = 'none';
+        //         }
+        //     }
+
+            let regTwo = document.getElementById('regTwo');
+            
+            // regTwo.onchange = (event) => {
+            //     let targ = event.target;
+
+            //     if (targ.value.length <= 3 || targ.value.length >= 26) {
+            //         document.querySelector('.error_password').style.display = 'block';
+            //     } else {
+            //         document.querySelector('.error_password').style.display = 'none';
+            //     }
+            // }
+            document.addEventListener('DOMContentLoaded', () => {
+                document.getElementById('submit_send_data_registration').onclick = (event) => {
+                    event.preventDefault();
+                    let check = 1;
+                    let regOne = document.getElementById('regOne');
+                    let regTwo = document.getElementById('regTwo');
+                    
+                    if (!regOne.value.length) {
+                        document.querySelector('.error_name_Empty').style.display = 'block';
+                        check--;
+                    } else {
+                        document.querySelector('.error_name_Empty').style.display = 'none';
+                        check++;
+                    }
+
+                    if (regOne.value.match(/[|/\\{}[\]_\s]/)) {
+                        document.querySelector('.error_name_Validation').style.display = 'block';
+                        check--;
+                    } else {
+                        document.querySelector('.error_name_Validation').style.display = 'none';
+                        check++;
+                    }
+
+                    if (regTwo.value.length <= 3 || regTwo.value.length >= 26) {
+                        document.querySelector('.error_password').style.display = 'block';
+                        check--;
+                    } else {
+                        document.querySelector('.error_password').style.display = 'none';
+                        check++;
+                    }
+                    if (check === 4) formRegistation.submit();
+                }
+            });
+        </script>
         <div class="button__login_container">
             <a href="http://localhost:3000/form_login" class="button__login">have account?</a>
         </div>

@@ -1432,9 +1432,9 @@ footer div {
 
     .content-graphyc {
         display: flex;
-    margin-left: auto;
-    flex-wrap: wrap;
-    align-items: center;
+        margin-left: auto;
+        flex-wrap: wrap;
+        align-items: center;
     }
 
     .content-graphyc h6 {
