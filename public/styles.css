@@ -220,9 +220,10 @@ body {
 .f_size {
     z-index: 5010;
     position: absolute;
-    width: 80px;
+    width: 48px;
     height: 40px;
     padding: 10px;
+    opacity: 0.6;
     border: none;
     border-radius: 5px;
     background-color: #dec8ec;
@@ -288,7 +289,7 @@ body {
 }
 
 .save-btn {
-    display: inline-block;
+    display: none;
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
@@ -348,9 +349,7 @@ body {
 }
 
 .check__content {
-    position: absolute;
-    top: 50px;
-    right: 200px;
+    margin: 9% 0 0 8%;
     width: 140px;
     height: 50px;
     cursor: pointer;
@@ -784,8 +783,8 @@ div .log-reg {
 /* content-five */
 
 .content-five {
-    position: relative;
-    height: 1050px;
+    /* position: relative; */
+    /* height: 1050px; */
     color: #fff;
     background: linear-gradient(45deg, #a21af0, #ff0062);
 }
@@ -810,8 +809,13 @@ div .log-reg {
 }
 
 .block-content-five-one {
-    position: relative;
-    margin-top: 30px;
+    margin-top: 0px;
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+
 }
 
 
@@ -821,17 +825,14 @@ div .log-reg {
 
 
 .line-top {
-    width: 17px;
+    width: 23px;
     height: 65px;
     background-color: #fff;
-    margin-left: 45px;
-    vertical-align: 50%;
+    margin: auto 15px;
 }
 
 .five-text-content {
-    position: absolute;
-    top: 7px;
-    left: 350px;
+
 }
 
 .five-text-content p {
@@ -1264,7 +1265,6 @@ footer div {
     .five-text-content p {
         font-size: 2.1vw;
         margin-left: 12px;
-        margin-top: -11px;
         width: 89%;
     }
     
@@ -1390,6 +1390,15 @@ footer div {
 
 @media (max-width: 478px) {
     
+    .content-two-title h1 {
+        font-size: 18vw;
+    }
+
+    .chain-info h3::before {
+        height: 97px;
+        width: 97px;
+    }
+
     .header-up-text .header_firstline_text {
         font-size: 13vw;
         font-weight: 350;
@@ -1572,7 +1581,7 @@ footer div {
     }
 
     .five-text-content {
-        position: static;
+    
     }
 
     

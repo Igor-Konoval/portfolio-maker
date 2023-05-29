@@ -28,50 +28,52 @@ class homeController {
     
     async allElementsCabinet(req, res) {
         try {
+
             let { username } = req.params;
             let user;
             let usernameExport;
             let id;
-            console.log(typeof username);
-            console.log('cabinet first');
-            console.log(`37 allElementCabinet ${username}`);
-            if (username != 'undefined') { //maybe trouble
-            // if (!username) {
+
+            if (username != 'undefined') { 
+
                 user = await User.findOne({ username });
                 id = user._id;
-                console.log('42 okay');
                 usernameExport = username;
-                console.log(id + ' first');
+
             } else {
+
                 let token = req.cookies.jwt;
+
                 if (token) {
+                    
                     let decodedToken = jwt.verify(token, secret);
                     id = decodedToken.id;
                     username = decodedToken.username;
                     usernameExport = username;
-                    console.log(id + ' twos');
 
                 }
             }
 
             let editCabArr = [];
             let editBlocksArr = [];
-
             let editCab = await EditCabinet.findById(id);
-            // console.log(editCab + ' editCab id');
+ 
             if (editCab) {
+                
                 let editEl = editCab.value;
                 editCabArr.push(...editEl);
-                // console.log(editCabArr + ' editCab id');
+                
             }
 
             let editBlocks = await BlocksCabinet.findById(id);
             
             if (editBlocks) {
+
                 let allBlocks = await editBlocks.value;
                 editBlocksArr.push(...allBlocks);
+
             }
-            console.log(typeof editCabArr, typeof editBloc);
+
             return res.json({ dataOne: editCabArr, dataTwo: editBlocksArr, usernameExport});
         } catch (e) {
             res.status(403).json({message:"error", error: e});
@@ -84,8 +86,9 @@ class homeController {
             let user = await User.findOne({ username });
 
             if (!user) {
-                console.log('this report not user define!!!!!!!');
+
                 return res.status(404).render('404', { title: 'Not Found' });
+
             }
 
             let editCabArr = [];
@@ -135,8 +138,8 @@ class homeController {
         try {
             let token = req.cookies.jwt;
             let username = "non user";
-            console.log('cabinet');
             let usernameExport = '';
+
             if (token) {
                 let editCabArr = [];
                 let editBlocksArr = [];
@@ -149,6 +152,7 @@ class homeController {
                 let editCab = await EditCabinet.findById(id);
                 
                 if (editCab) {
+                    
                     let editEl = editCab.value;
                     editCabArr.push(...editEl);
                 } else {
@@ -158,10 +162,14 @@ class homeController {
                 let editBlocks = await BlocksCabinet.findById(id);
                 
                 if (editBlocks) {
+
                     let allBlocks = editBlocks.value;
                     editBlocksArr.push(...allBlocks);
+
                 } else {
+
                     checkDb = false;
+
                 }
 
                 if (checkDb) {
@@ -195,7 +203,8 @@ class homeController {
             elEditArr.push(item);
         }
         
-        let blocksArr = elEditArr.slice(-6);
+        let blocksArr = elEditArr.slice(-7);
+
         elEditArr = elEditArr.slice(0, elEditArr.length - 6);
     
         let username = "non user";
@@ -231,9 +240,6 @@ class homeController {
             await editBlocks.save();
     
             return res.render('cabinet', {title: 'cabinet', username, usernameExport});
-            // console.log(username);
-            // // return res.redirect(`cabinet/${username}`);
-            // return res.status(200);
         } else {
             return res.render('./modules/login', {title: 'login', username});
         }

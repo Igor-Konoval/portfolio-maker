@@ -30,7 +30,7 @@ class ContentEditor {
     return new Promise((resolve, reject) => {
       this.dataProvider.getData()
         .then((data) => {
-          let dataBlocks = data.dataTwo;
+          let dataBlocks = data.dataTwo;// blocks from backend
           let dataElements = data.dataOne.map(item => item.split('|$')[0]);
           let dataFSize = data.dataOne.map(item => item.split('|$')[1]);
           if (dataElements.length || dataFSize.length) {
@@ -46,8 +46,9 @@ class ContentEditor {
   }
 
   updateBlocks(dataBlocks) {
-    let blocks = document.querySelectorAll('.check__content');
+    let blocks = document.querySelectorAll('.check__content'); //buttons
     blocks.forEach((el, index) => {
+      console.log(`51 chanse.js `, `block${index}`, dataBlocks[index]);
       el.parentElement.setAttribute(`block${index}`, dataBlocks[index]);
       el.setAttribute('show_block', dataBlocks[index]);
       if (el.parentElement.getAttribute(`block${index}`) === 'true') {

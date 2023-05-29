@@ -4,11 +4,10 @@ document.addEventListener("DOMContentLoaded", ()=> {
 
     inp.addEventListener('click', (event) => {
         event.preventDefault();
-        let blocks = document.querySelectorAll('.check__content');
+        let blocks = document.querySelectorAll('.check__content'); //buttons
         
         let formCabinet = new FormData();
        
-        
         const editableElements = document.querySelectorAll('[contenteditable]');
 
         for (let el = 0; el < editableElements.length; el++) {
@@ -19,7 +18,8 @@ document.addEventListener("DOMContentLoaded", ()=> {
         let contError = document.querySelector('.container_info_error');
         
         blocks.forEach((item,index)=> {
-          formCabinet.append(`block${index}`, item.parentElement.getAttribute(`block${index}`));
+            console.log(`21 form_cabinet.js` ,item.parentElement.getAttribute(`block${index}`));
+          formCabinet.append(`block${index}`, item.parentElement.getAttribute(`block${index}`));//
         })
 
         let editBtn = document.querySelector('.edit-btn');  
