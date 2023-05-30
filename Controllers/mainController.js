@@ -187,11 +187,13 @@ class homeController {
     }
 
     reqRegistr(req, res) {
-        res.render('./modules/registr', {title: 'registr form', username: "non user"});
+        const message = req.query.message;
+        res.render('./modules/registr', {title: 'registr form', username: "non user", message});
     }
 
     reqLogin(req, res) {
-        res.render('./modules/login', {title: 'login', username: "non user"});
+        const message = req.query.message;
+        res.render('./modules/login', {title: 'login', username: "non user", message});
     }
 
     async editCabinet(req, res) {

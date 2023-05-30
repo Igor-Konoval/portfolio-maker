@@ -14,7 +14,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100%;
         width: 1000px;
         max-width: 1200px;
         margin: 0 auto;
@@ -106,10 +105,29 @@
 
     @media (max-width: 951px) {
         .container-form-reg {
-            top: 68%;
+            top: 48%;
         }
     }
-        
+
+    @media (max-width: 479px) {
+        .container_log {
+            width: 214px;
+            padding: 42px 20px 0 20px;
+        }
+
+        .container-form-reg {
+            top: 48%;
+        }
+
+        .headerbg {
+            height: 664px;
+        }
+    }
+
+    .message {
+    color: red;
+    margin-bottom: 10px;
+}
 </style>
 <body>
     <%- include('./header') %>
@@ -117,10 +135,15 @@
         <div class="container_log">
             <form action="/auth/login" method="post" class="login_form">
                 <label>Name</label><br>
-                <input type="input" name="username" id="regOne"> <br><br>
+                <input type="input" name="username" id="regOne"> <br>
                 <label>Password</label><br>
-                <input type="password" name="password" id="regTwo"> <br><br>
-                <input type="submit" id="login_submit" value="send data"> <br><br>
+                <input type="password" name="password" id="regTwo"> <br>
+                <% if (message) { %>
+                    <div class="message">
+                        <%= message %>
+                    </div>
+                <% } %>
+                <input type="submit" id="login_submit" value="send data"> <br>
             </form>
         </div>
         <div class="button__registr_container">

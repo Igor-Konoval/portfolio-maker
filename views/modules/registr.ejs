@@ -103,16 +103,13 @@
     }
 
     @media (max-width: 951px) {
-        .container-form-reg {
-            top: 68%;
-        }
 
         .error_name_Validation p {
             margin: 0;
         }
 
         .container-form-reg {
-           top: 58%;
+           top: 48%;
         }
 
         .error_name_Empty p {
@@ -129,7 +126,6 @@
 
         .container_reg {
             padding: 42px 20px 0 20px;
-            margin-bottom: -17px;
         }
         
         input[type="input"], input[type="password"] {
@@ -161,6 +157,11 @@
         }
         
     }
+
+    .message {
+        color: red;
+        margin-bottom: 10px;
+    }
 </style>
 <body>
     <%- include('./header') %>
@@ -180,6 +181,11 @@
                 <div class="error_password">
                     <p>ошибка длинны пароля, допустимо от 4 до 26</p>
                 </div>
+                <% if (message) { %>
+                    <div class="message">
+                      <%= message %>
+                    </div>
+                <% } %>
                 <input type="submit" value="send data" id="submit_send_data_registration"> <br><br>
             </form>
         </div>
@@ -187,34 +193,9 @@
             const formRegistation = document.querySelector('.registr_form');
             
            let regOne = document.getElementById('regOne');
-           
-        //    regOne.onchange = (event) => {
-        //         let targ = event.target;
-                
-        //         if (!targ.value.length) {
-        //             document.querySelector('.error_name .Empty').style.display = 'block';
-        //         } else {
-        //             document.querySelector('.error_name .Empty').style.display = 'none';
-        //         }
-
-        //         if (targ.value.match(/[|/\\{}[\]_\s]/)) {
-        //             document.querySelector('.error_name .Validation').style.display = 'block';
-        //         } else {
-        //             document.querySelector('.error_name .Validation').style.display = 'none';
-        //         }
-        //     }
 
             let regTwo = document.getElementById('regTwo');
             
-            // regTwo.onchange = (event) => {
-            //     let targ = event.target;
-
-            //     if (targ.value.length <= 3 || targ.value.length >= 26) {
-            //         document.querySelector('.error_password').style.display = 'block';
-            //     } else {
-            //         document.querySelector('.error_password').style.display = 'none';
-            //     }
-            // }
             document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('submit_send_data_registration').onclick = (event) => {
                     event.preventDefault();

@@ -81,16 +81,10 @@ body {
     opacity: 1;
 }
 
-#container_buttons_header {
-
-}
-
 #inp_submit_cabinet {
     background-color: #f8c819d0;
     z-index: 5900;
     position: fixed;
-    /* bottom: 130px;
-    left: 100px; */
     right: 15.2%;
     bottom: 6%;
     width: 200px;
@@ -215,6 +209,14 @@ body {
     color:#fff;
     text-decoration: none;
     font-family: 'Roboto Condensed', sans-serif;
+}
+
+#container_buttons_header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .f_size {
@@ -1087,7 +1089,7 @@ footer div {
     }
 
     .itemNav {
-        margin: 0;
+        padding: 5px;
         margin-top: 4%;
         margin-bottom: 4%;
         margin-right: 4%;
@@ -1389,6 +1391,26 @@ footer div {
 }
 
 @media (max-width: 478px) {
+    
+    .log-list {
+        margin-top: 0px;
+    }
+
+    .log-list > a {
+        margin: 5px;
+        font-size: 25px;
+    }
+
+    .itemNav {
+        padding: 5px;
+        margin: auto;
+    }
+
+    .button.form_create {
+        font-size: 14px;
+        margin: 25px 0 0 0;
+        padding: 15px;
+    }
     
     .content-two-title h1 {
         font-size: 18vw;

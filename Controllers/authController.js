@@ -25,7 +25,7 @@ class AuthController {
             if (!errors.isEmpty()) {
                 return res.status(400).json({message: "Ошибка при регистрации", errors});
             }
-            
+
             // if (!errors.isEmpty()) {
             //     // Формирование массива сообщений об ошибках
             //     const errorMessages = errors.array().map(error => error.msg);
@@ -36,10 +36,12 @@ class AuthController {
 
             const {username, password} = req.body;
             const candidate = await User.findOne({username});
-        
             if (candidate) {
-                return res.status(400).json('пользователь с таким именем уже существует');
+                return res.redirect('/registration?message=пользователь с таким именем уже существует');
             }
+            // if (candidate) {
+            //     return res.status(400).json('пользователь с таким именем уже существует');
+            // }
             
             const userRole = await Roles.findOne({value: 'USER'});
             const hashPassword = bcrypt.hashSync(password, 5);
@@ -64,12 +66,12 @@ class AuthController {
             const user = await User.findOne({username});
            
             if (!user) {
-                return res.status(400).json({message: `Пользователь ${username} не найден`});
+                return res.redirect('/login?message=Пользователь не найден');
             }
 
             const validPassword = bcrypt.compareSync(password, user.password);
             if (!validPassword) {
-                return res.status(400).json({message: `Введен не верный пароль`})
+                return res.redirect('/login?message=Введен неверный пароль');
             }
 
             const token = generateAccessToken(user._id, user.roles, username);
