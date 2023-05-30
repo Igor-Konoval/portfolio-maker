@@ -3,7 +3,7 @@
     <div id="header-navigation">
         <div class="container" style="position: relative;">
             <div class="upperNav">
-                <a href="http://localhost:3000/" class="itemNav">HOME</a>
+                <a href="/" class="itemNav">HOME</a>
                 <a href="#about" class="itemNav">ABOUT</a>
                 <a href="#our-services" class="itemNav">OUR SERVICES</a>
                 <a href="#portfolio" class="itemNav">PORTFOLIO</a>
@@ -20,12 +20,12 @@
                       </div>
                     <div class="log-list-container">
                       <div class="log-list"> <% if (username !== 'non user') { %>
-                        <a href="http://localhost:3000/cabinet/<%= username %>" class="log-item">my portfolio</a>
-                        <a href="http://localhost:3000/cabinet" class="log-item">edit portfolio</a>
-                        <a href="http://localhost:3000/auth/logout_user" class="log-item">log out</a>
+                        <a href="/cabinet/<%= username %>" class="log-item">my portfolio</a>
+                        <a href="/cabinet" class="log-item">edit portfolio</a>
+                        <a href="/auth/logout_user" class="log-item">log out</a>
                         <% } else { %>
-                        <a href="http://localhost:3000/form_login" class="log-item">login</a>
-                        <a href="http://localhost:3000/form_registration" class="log-item">registration</a>
+                        <a href="/form_login" class="log-item">login</a>
+                        <a href="/form_registration" class="log-item">registration</a>
                         <% } %>
                       </div>
                     </div>
@@ -40,7 +40,7 @@
                 <span class="header_lastline_text" contenteditable="false"> I HAVE MORE THAN 10 YEARS OF EXPERIENCE </span>
                    
                 <div id="container_buttons_header">
-                  <a class="button form_create" href="http://localhost:3000/cabinet">Create Portpholio</a>
+                  <a class="button form_create" href="/cabinet">Create Portpholio</a>
                 </div>
             </div>
             

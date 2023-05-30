@@ -39,9 +39,6 @@ class AuthController {
             if (candidate) {
                 return res.redirect('/registration?message=пользователь с таким именем уже существует');
             }
-            // if (candidate) {
-            //     return res.status(400).json('пользователь с таким именем уже существует');
-            // }
             
             const userRole = await Roles.findOne({value: 'USER'});
             const hashPassword = bcrypt.hashSync(password, 5);
@@ -73,7 +70,7 @@ class AuthController {
             if (!validPassword) {
                 return res.redirect('/login?message=Введен неверный пароль');
             }
-
+            
             const token = generateAccessToken(user._id, user.roles, username);
             const expirationDate = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 часа
             res.cookie('jwt', token, { httpOnly: true, expires: expirationDate });

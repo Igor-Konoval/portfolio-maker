@@ -28,14 +28,15 @@ document.addEventListener("DOMContentLoaded", ()=> {
             setTimeout(()=> contError.style.display = 'none', 1800);
         } else {
             contError.style.display = 'none';
-            xhr.open('POST', 'http://localhost:3000/edit_cabinet');
+            
+            xhr.open('POST', `${window.location.origin}/edit_cabinet`);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             
             xhr.withCredentials = true;
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     contError.style.display = 'none';
-                    window.location.href = `http://localhost:3000/cabinet/${usernameExport}`;
+                    window.location.href = `${window.location.origin}/cabinet/${usernameExport}`;
                 }
             };
             xhr.onerror = function() {
@@ -43,7 +44,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
             };
             xhr.send(new URLSearchParams([...formCabinet.entries()]).toString());
             let aHref = document.createElement('a');
-            aHref.setAttribute('href', `http://localhost:3000/cabinet/${usernameExport}`);
+            aHref.setAttribute('href', `${window.location.origin}/cabinet/${usernameExport}`);
             document.body.append(aHref);
             let ev = new Event('click');
             aHref.dispatchEvent(ev);

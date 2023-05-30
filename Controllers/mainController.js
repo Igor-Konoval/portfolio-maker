@@ -178,7 +178,8 @@ class homeController {
                     return res.render('cabinet', {title: 'cabinet', username, usernameExport});
                 }
             } else {
-                return res.render('./modules/login', {title: 'login', username});
+                // return res.render('./modules/login', {title: 'login', username});
+                return res.redirect('/form_login');
             }
             
         } catch (e) {
@@ -243,7 +244,8 @@ class homeController {
     
             return res.render('cabinet', {title: 'cabinet', username, usernameExport});
         } else {
-            return res.render('./modules/login', {title: 'login', username});
+            // return res.render('./modules/login', {title: 'login', username});
+            return res.redirect('/form_login');
         }
     }
     

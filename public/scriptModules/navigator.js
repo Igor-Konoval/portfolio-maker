@@ -1,7 +1,7 @@
 const navLinks = document.querySelectorAll('.upperNav > a');
 
 for (let link of navLinks) {
-  if (link.getAttribute('href').includes('http')) continue;
+  if (link.getAttribute('href').includes('/')) continue;
   link.addEventListener('click', e => {
     e.preventDefault();
 

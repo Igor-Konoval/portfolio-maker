@@ -22,7 +22,6 @@ class storageController {
         const collImgs = userImages.value;
 
         res.send(collImgs);
-        console.log("Success");
       } catch (error) {
         res.send("Error:" + error);
       }
@@ -32,7 +31,7 @@ class storageController {
     console.log("Made it /upload");
     try {
       if (req.file) {
-        console.log("File found, trying to upload...");
+        // console.log("File found, trying to upload...");
         const blob = storageModel.bucket.file(req.file.originalname);
         const blobStream = blob.createWriteStream();
 

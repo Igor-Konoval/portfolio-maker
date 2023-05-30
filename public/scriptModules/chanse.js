@@ -30,23 +30,23 @@ class ContentEditor {
     return new Promise((resolve, reject) => {
       this.dataProvider.getData()
         .then((data) => {
-          let dataBlocks = data.dataTwo;// blocks from backend
+          let dataBlocks = data.dataTwo;
           let dataElements = data.dataOne.map(item => item.split('|$')[0]);
           let dataFSize = data.dataOne.map(item => item.split('|$')[1]);
           if (dataElements.length || dataFSize.length) {
             this.updateBlocks(dataBlocks);
             this.updateEditableElements(dataElements, dataFSize);
           }
-          resolve(); // Резолвим промис при успешной инициализации
+          resolve();
         })
         .catch((error) => {
-          reject(`Ошибка получения данных: ${error}`); // Реджектим промис в случае ошибки
+          reject(`Ошибка получения данных: ${error}`);
         });
     });
   }
 
   updateBlocks(dataBlocks) {
-    let blocks = document.querySelectorAll('.check__content'); //buttons
+    let blocks = document.querySelectorAll('.check__content');
     blocks.forEach((el, index) => {
       console.log(`51 chanse.js `, `block${index}`, dataBlocks[index]);
       el.parentElement.setAttribute(`block${index}`, dataBlocks[index]);
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
   console.log('this usernameExport', usernameExport);
   const username = window.location.pathname.split('/')[2];
   console.log(username, ' eventListener back');
-  const url = `http://localhost:3000/edit_elem_cabinet/${username}`;
+  const url = `${window.location.origin}/edit_elem_cabinet/${username}`;
   let dataProvider = new DataProvider(url);
   let contentEditor = new ContentEditor(dataProvider);
   let imageUploader = new ImageUploader(usernameExport);
