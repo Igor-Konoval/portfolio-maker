@@ -2,10 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const authRouter = require('./Routers/authRouter.js');
 const mainRouter = require('./Routers/mainRouter.js');
+const { uri } = require('./mongo.js');
 const cookieParser = require('cookie-parser');
 const PORT = 3000;
-
-const uri = "mongodb+srv://igorkonoval:Vfhuj1981lbrfz2013@cluster0.ycf0bhe.mongodb.net/PortfolioBase?retryWrites=true&w=majority";
 
 const bodyParser = require('body-parser');
 
