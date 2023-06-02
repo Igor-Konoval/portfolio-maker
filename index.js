@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const mongoose = require('mongoose');
 const { uri } = require('./mongo.js');
 const authRouter = require('./Routers/authRouter.js');
@@ -12,7 +13,7 @@ const PORT = 3000;
 const bodyParser = require('body-parser');
 
 const server = express();
-
+const createPath = (file) => path.resolve(__dirname, file);
 mongoose.set('strictQuery', false);
 server.use(express.json());
 server.set('view engine', 'ejs')
@@ -21,6 +22,8 @@ express.static.mime.types[".js"] = "text/javascript";
 server.use(bodyParser.urlencoded({extended: true}));
 server.use(express.static('public'))
 server.use('/GStorage', express.static('F:/maket/GStorage'));
+console.log(createPath('GStorage'));
+console.log(__dirname+'/GStorage');
 server.use('/auth', authRouter);
 server.use('/', mainRouter);
 server.use('/', storageRouter);
