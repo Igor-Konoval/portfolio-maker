@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portfolio-maker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: portfolio-maker
+  template:
+    metadata:
+      labels:
+        app: portfolio-maker
+    spec:
+      containers:
+        - name: portfolio-maker
+          image: gcr.io/my-project/my-app
+          ports:
+            - containerPort: 3000
+          env:
+            - name: ATLAS_URI
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-atlas-secret
+                  key: ATLAS_URI

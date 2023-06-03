@@ -1,13 +1,12 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
-const { uri } = require('./mongo.js');
 const authRouter = require('./Routers/authRouter.js');
 const mainRouter = require('./Routers/mainRouter.js');
 const storageRouter = require('./GStorage/storageRouter.js');
 const cookieParser = require('cookie-parser');
-const PORT = 3000;
-
+const PORT = process.env.PORT || 3000;
+const uri = process.env.ATLAS_URI;
 
 
 const bodyParser = require('body-parser');
@@ -21,9 +20,7 @@ server.use(cookieParser());
 express.static.mime.types[".js"] = "text/javascript";
 server.use(bodyParser.urlencoded({extended: true}));
 server.use(express.static('public'))
-server.use('/GStorage', express.static('F:/maket/GStorage'));
-console.log(createPath('GStorage'));
-console.log(__dirname+'/GStorage');
+server.use('/GStorage', express.static(createPath('GStorage')));/* 'F:/maket/GStorage' */
 server.use('/auth', authRouter);
 server.use('/', mainRouter);
 server.use('/', storageRouter);
