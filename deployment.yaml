@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: portfolio-maker
-          image: gcr.io/my-project/my-app
+          image: /add image
           ports:
             - containerPort: 3000
           env:
