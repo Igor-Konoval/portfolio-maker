@@ -130,6 +130,7 @@
 }
 </style>
 <body>
+    <div class="loader"></div>
     <%- include('./header') %>
     <div class="container-form-reg">    
         <div class="container_log">
@@ -151,6 +152,13 @@
         </div>
     </div>
     <script src="/scriptModules/loginScript.js"></script>
+    <script>
+        window.addEventListener("load", () => {
+            const loader = document.querySelector(".loader");
+
+            loader.classList.add("loader--hidden");
+        });
+    </script>
     <%- include('./footer') %>
 
 </body>

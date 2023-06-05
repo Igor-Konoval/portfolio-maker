@@ -6,7 +6,7 @@ const mainRouter = require('./Routers/mainRouter.js');
 const storageRouter = require('./GStorage/storageRouter.js');
 const cookieParser = require('cookie-parser');
 const PORT = process.env.PORT || 3000;
-const uri = process.env.ATLAS_URI;
+const uri = process.env.ATLAS_URI || 'mongodb+srv://igorkonoval:Vfhuj1981lbrfz2013@portfolio-maker-serverl.ix0zmzw.mongodb.net/?retryWrites=true&w=majority';
 
 
 const bodyParser = require('body-parser');

@@ -3,7 +3,7 @@
  <%- include('./modules/head') %>
 <body>
     <!-- header  -->
-
+    <div class="loader"></div>
     <%- include('./modules/header') %>
 
     <div class="content-one">
@@ -161,7 +161,13 @@
             
         </form>
     </div>
-
+    <script>
+        window.addEventListener("load", () => {
+            const loader = document.querySelector(".loader");
+        
+            loader.classList.add("loader--hidden");
+        });
+    </script>
     <%- include('./modules/footer') %>
 </body>
 </html>

@@ -35,14 +35,53 @@
         visibility: hidden;
     }
 
+    /* .loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        background: #bcbcbcab;
+        transition: opacity 0.75s, visibility 0.75s;
+    }
+
+    .loader--hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader::after {
+        content: "";
+        width: 75px;
+        height: 75px;
+        border: 15px solid #dddddd;
+        border-top-color: #009578;
+        border-radius: 50%;
+        animation: loading 0.75s ease infinite;
+    }
+
+    @keyframes loading {
+        from {
+            transform: rotate(0turn);
+        }
+        to {
+            transform: rotate(1turn);
+        }
+    } */
+
  </style>
 
     
 
 <body>
         <!-- header  -->
+  <div class="loader"></div>
+
     <div id="contentContainer">
-        
         <%- include('./modules/header') %>
     
         <!-- <div class="container_info_error">
@@ -213,11 +252,11 @@
                 <p contenteditable="false">lorem ipsup psss dsads loper idakdada ios dsads loper idak</p>
                 <div class="container-form">
                     <div class="contain-inputs">
-                        <input type="input" name="input-date" value="Name">
-                        <input type="input" name="input-phone" value="Phone">
-                        <input type="input" name="input-email" value="Email">
+                        <input type="input" name="input-date" placeholder="Name">
+                        <input type="input" name="input-phone" placeholder="Phone">
+                        <input type="input" name="input-email" placeholder="Email">
                     </div>
-                    <input type="input" name="input-message" value="Message">
+                    <input type="input" name="input-message" placeholder="Message">
                     <input type="button" class=button name="button" value="SEND MESSAGE">
                 </div>
                 

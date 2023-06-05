@@ -63,7 +63,9 @@ class ContentEditor {
     let editableElements = document.querySelectorAll('[contenteditable]');
     editableElements.forEach((el, index) => {
       el.textContent = dataElements[index];
-      el.style.fontSize = dataFSize[index] + 'px';
+      if (index >= 4) {
+        el.style.fontSize = dataFSize[index] + 'px';
+      }
     });
   }
 }
@@ -151,10 +153,18 @@ document.addEventListener('DOMContentLoaded', function () {
   
   Promise.all([promise1, promise2])
     .then(() => {
+
       let contentContainer = document.getElementById('contentContainer');
       contentContainer.style.visibility = 'visible';
+      const loader = document.querySelector(".loader");
+
+      loader.classList.add("loader--hidden");
+
+     
+
     })
     .catch((error) => {
+      
       console.error(`Ошибка при инициализации: ${error}`);
     });
 });

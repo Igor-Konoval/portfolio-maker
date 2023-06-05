@@ -164,6 +164,7 @@
     }
 </style>
 <body>
+    <div class="loader"></div>
     <%- include('./header') %>
     <div class="container-form-reg">    
         <div class="container_reg">
@@ -235,6 +236,13 @@
         </div>
     </div>
     <%- include('./footer') %>
+    <script>
+        window.addEventListener("load", () => {
+            const loader = document.querySelector(".loader");
+
+            loader.classList.add("loader--hidden");
+        });
+    </script>
 
 </body>
 </html>
