@@ -1,69 +1,69 @@
 
 <div class="header">
-    <div id="header-navigation">
-        <div class="container" style="position: relative;">
-            <div class="upperNav">
-                <a href="/" class="itemNav">HOME</a>
-                <a href="#about" class="itemNav">ABOUT</a>
-                <a href="#our-services" class="itemNav">OUR SERVICES</a>
-                <a href="#portfolio" class="itemNav">PORTFOLIO</a>
-                <a href="#experience" class="itemNav">EXPERIENCE</a>
-                <a href="#blog" class="itemNav">BLOG</a>
-                <a href="#contact" class="itemNav">CONTACT</a>
-                <div class="log-reg-container dropdown" tabindex="0">
-                    <div class="log-reg">
-                      <% if (username !== 'non user') { %>
-                      <%= username %>
+  <div id="header-navigation">
+      <div class="container" style="position: relative;">
+          <div class="upperNav">
+              <a href="/" class="itemNav">HOME</a>
+              <a href="#about" class="itemNav">ABOUT</a>
+              <a href="#our-services" class="itemNav">OUR SERVICES</a>
+              <a href="#portfolio" class="itemNav">PORTFOLIO</a>
+              <a href="#experience" class="itemNav">EXPERIENCE</a>
+              <a href="#blog" class="itemNav">BLOG</a>
+              <a href="#contact" class="itemNav">CONTACT</a>
+              <div class="log-reg-container dropdown" tabindex="0">
+                  <div class="log-reg">
+                    <% if (username !== 'non user') { %>
+                    <%= username %>
+                    <% } else { %>
+                      sign in
+                    <% } %>
+                    </div>
+                  <div class="log-list-container">
+                    <div class="log-list"> <% if (username !== 'non user') { %>
+                      <a href="/cabinet/<%= username %>" class="log-item">my portfolio</a>
+                      <a href="/cabinet" class="log-item">edit portfolio</a>
+                      <a href="/auth/logout_user" class="log-item">log out</a>
                       <% } else { %>
-                        sign in
+                      <a href="/form_login" class="log-item">login</a>
+                      <a href="/form_registration" class="log-item">registration</a>
                       <% } %>
-                      </div>
-                    <div class="log-list-container">
-                      <div class="log-list"> <% if (username !== 'non user') { %>
-                        <a href="/cabinet/<%= username %>" class="log-item">my portfolio</a>
-                        <a href="/cabinet" class="log-item">edit portfolio</a>
-                        <a href="/auth/logout_user" class="log-item">log out</a>
-                        <% } else { %>
-                        <a href="/form_login" class="log-item">login</a>
-                        <a href="/form_registration" class="log-item">registration</a>
-                        <% } %>
-                      </div>
                     </div>
                   </div>
-
-            </div>
-
-            <div class="header-up-text">
-                <span class="header_firstline_text" contenteditable="false"> HELLO, I AM </span>
-                <span class="header_twosline_text" contenteditable="false"> JOHN  </span>
-                <span class="header_thierdline_text" contenteditable="false"> SMITH </span>
-                <span class="header_lastline_text" contenteditable="false"> I HAVE MORE THAN 10 YEARS OF EXPERIENCE </span>
-                   
-                <div id="container_buttons_header">
-                  <a class="button form_create" href="/cabinet">Create Portpholio</a>
                 </div>
-            </div>
-            
-            <!-- button_redact -->
-        </div>
-    </div>
-    <div class="headerbg">
-        <div id="mask-bg"></div>
-    </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-        let script = document.createElement('script');
-        script.src = '/scriptModules/navigator.js';
-        document.getElementsByTagName('head')[0].insertBefore(script, document.getElementsByTagName('head')[0].firstChild);
-        });
+          </div>
 
-    </script>
-    
+          <div class="header-up-text">
+              <span class="header_firstline_text" contenteditable="false"> HELLO, I AM </span>
+              <span class="header_twosline_text" contenteditable="false"> JOHN  </span>
+              <span class="header_thierdline_text" contenteditable="false"> SMITH </span>
+              <span class="header_lastline_text" contenteditable="false"> I HAVE MORE THAN 10 YEARS OF EXPERIENCE </span>
+                 
+              <div id="container_buttons_header">
+                <a class="button form_create" href="/cabinet">Create Portpholio</a>
+              </div>
+          </div>
+          
+          <!-- button_redact -->
+      </div>
+  </div>
+  <div class="headerbg">
+      <div id="mask-bg"></div>
+  </div>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function() {
+      let script = document.createElement('script');
+      script.src = '/scriptModules/navigator.js';
+      document.getElementsByTagName('head')[0].insertBefore(script, document.getElementsByTagName('head')[0].firstChild);
+      });
+
+  </script>
+  
 </div>
 
 <div class="container-buttonUp">
-    <div class="buttonUp">Up</div>
+  <div class="buttonUp">Up</div>
 </div>
 
 <script src="/scriptModules/upperNav.js"></script>

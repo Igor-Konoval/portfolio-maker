@@ -28,7 +28,7 @@
     }
 
     #contentContainer {
-        visibility: hidden;
+       visibility: hidden;
     }
 
     /* .loader {
@@ -69,6 +69,7 @@
         }
     } */
 
+
  </style>
 <body>
     <!-- header  -->
@@ -76,6 +77,7 @@
 
     <div id="contentContainer">
     <%- include('./modules/header') %>
+    
     <div id="button_redact">
         <button class="edit-btn">Edit</button>
         <button class="save-btn">Save</button>
@@ -83,7 +85,7 @@
 
     <input id="inp_submit_cabinet" type="submit" value="publish changes">
     <div class="container_info_error">
-        <div class="info_error">save your changes</div>
+        <div class="info_error">please, save your edit</div>
     </div>
     <div class="content-one">
         <button class="check__content" show_block="true">hide block</button>
@@ -317,11 +319,11 @@
             <p contenteditable="false">lorem ipsup psss dsads loper idakdada ios dsads loper idak</p>
             <div class="container-form">
                 <div class="contain-inputs">
-                    <input type="input" name="input-date" placeholder="Name">
-                    <input type="input" name="input-phone" placeholder="Phone">
-                    <input type="input" name="input-email" placeholder="Email">
+                    <input type="input" name="input-date" value="Name">
+                    <input type="input" name="input-phone" value="Phone">
+                    <input type="input" name="input-email" value="Email">
                 </div>
-                <input type="input" name="input-message" placeholder="Message">
+                <input type="input" name="input-message" value="Message">
                 <input type="button" class=button name="button" value="SEND MESSAGE">
             </div>
             

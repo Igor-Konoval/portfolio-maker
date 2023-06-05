@@ -152,14 +152,13 @@
         </div>
     </div>
     <script src="/scriptModules/loginScript.js"></script>
+    <%- include('./footer') %>
     <script>
         window.addEventListener("load", () => {
             const loader = document.querySelector(".loader");
-
+        
             loader.classList.add("loader--hidden");
         });
     </script>
-    <%- include('./footer') %>
-
 </body>
 </html>
